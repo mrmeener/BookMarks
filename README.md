@@ -3,35 +3,42 @@
 ## Overview
 The BookMark Manager is a professional bookmark management system designed for corporate environments, offering advanced organization, search, and management capabilities for business tools and websites.
 
+# BookMark Manager Documentation
+
+## Overview
+The BookMark Manager is a professional bookmark management system designed for corporate environments, offering advanced organisation, search, and management capabilities for business tools and websites.
+
 ---
 
 ## Version History
 
 ### Version 2.2.7 (2025-07-28)
 - **Desktop Application Support**: Added comprehensive desktop application management alongside web bookmarks
-- **Visual Differentiation**: Desktop apps display with unique styling, 🖥️ icons, and specialized badges
-- **Enhanced Add Bookmark Form**: Type selector (Web/Desktop) with dynamic form behavior and validation
+- **Visual Differentiation**: Desktop apps display with unique styling, 🖥️ icons, and specialised badges
+- **Enhanced Add Bookmark Form**: Type selector (Web/Desktop) with dynamic form behaviour and validation
 - **Desktop App Information Modals**: Click desktop apps to view installation guidance and IT support options
 - **Help System Integration**: Desktop apps support all 3 help types (Help, Split Help, Approval Process)
 - **Responsive Design**: Desktop app cards work seamlessly across all screen sizes and themes
-- **Data Structure Enhancement**: Added `type` field to bookmark objects with backward compatibility
-- **Fixed infinite loading issue** when adding user bookmarks
-- **Improved mergeUserBookmarks()** method to prevent duplicate accumulation
+- **Data Structure Enhancement**: Added `type` field to bookmark objects with backwards compatibility
+- **Theme Update**: Streamlined default theme selection to 6 core professional options (reduced from 17) for improved usability
+- Fixed infinite loading issue when adding user bookmarks
+- Improved mergeUserBookmarks() method to prevent duplicate accumulation
 
-### Version 2.2.6 (2025-07-27)
+### Version 2.2.6 (2025-07-28)
 - Fixed syntax error in user-bookmarks.js causing load failures  
 - Enhanced error handling for malformed bookmark data  
 - Improved console logging for debugging  
 - Updated documentation and version numbers  
 - Added comprehensive troubleshooting guide  
 
-### Version 2.2.5 (2025-07-26)
-- Added 8 new professional themes (17 total)  
-- Enhanced theme organization and categorization  
-- Improved color accessibility and contrast  
+### Version 2.2.5 (2025-07-27)
+- **Theme Customisation**: Reduced default themes to 6 core professional options while maintaining full customisation capabilities  
+- **Palette Flexibility**: Easily add/modify themes according to your colour palette preferences  
+- Enhanced theme organisation and categorisation  
+- Improved colour accessibility and contrast  
 - Updated theme selector with grouped options  
 
-### Version 2.2.0 (2025-01-26)
+### Version 2.2.0 (2025-01-27)
 - Added advanced help system with context-aware support  
 - Added knowledge base integration  
 - Added IT support ticket integration  
@@ -39,13 +46,13 @@ The BookMark Manager is a professional bookmark management system designed for c
 - Improved mobile responsiveness  
 - Added recent visits tracking  
 
-### Version 2.1.0 (2025-01-28)
+### Version 2.1.0 (2025-01-27)
 - Introduced CSV-to-JSON workflow for sysadmins  
 - Added comprehensive field mapping documentation  
 - Implemented automated validation and conversion  
 - Added support for complex contact methods in CSV format  
 
-### Version 2.0.0 (2025-01-27)
+### Version 2.0.0 (2025-01-26)
 - Implemented multi-user deployment capabilities  
 - Added browser bookmark import functionality  
 - Created PowerShell scripts for automated deployment  
@@ -67,7 +74,6 @@ File Share (Corporate):
 ├── index.html
 ├── script.js
 ├── styles.css
-├── bookmarks.json
 └── bookmarks.js
 
 Local Workstation:
@@ -99,6 +105,8 @@ Local Workstation:
 
 ## CSV-to-JSON Workflow
 
+## NEEDS A REWRITE!
+
 ### Core Fields
 | Field | Required | Example |
 |-------|----------|---------|
@@ -117,14 +125,14 @@ Local Workstation:
 
 ### Key Features
 - 🔍 Advanced search with tag filtering (`tag:admin`)  
-- 🎨 17 professional themes  
+- 🎨 6 professional themes (easily customisable to add more)  
 - 📚 Integrated knowledge base  
 - 🔄 Import/export functionality  
 
 ### Keyboard Shortcuts
 - `Ctrl+F`: Focus search bar  
 - `F5`: Refresh bookmarks  
-- `F`+`1`: Easter egg game  
+- `F1`: Easter egg game  
 
 ---
 
@@ -143,8 +151,20 @@ BookMarks/
 ## Support
 - **IT Help Desk**: helpdesk@company.com  
 - **System Admin**: sysadmin@company.com  
-- **Application Owner**: Keith Clarke  
+- **Application Owner**: MrMeener  
 
 **Version**: 2.2.7  
 **Last Updated**: 2025-07-28  
-**License**: MIT
+**Licence**: MIT  
+
+---
+
+### Theme Customisation Notes
+The core distribution now includes 6 optimised professional themes. To customise:
+1. Edit `styles.css` and locate the `:root` variables
+2. Modify colour values using HEX/RGB formats
+3. Add new theme blocks using existing templates
+4. Update the theme selector in `script.js` (search for `themeSelector`)
+
+### Out for now.
+
