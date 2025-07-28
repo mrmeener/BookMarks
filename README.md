@@ -1,11 +1,6 @@
 # BookMark Manager Documentation
 
 ## Overview
-The BookMark Manager is a professional bookmark management system designed for corporate environments, offering advanced organization, search, and management capabilities for business tools and websites.
-
-# BookMark Manager Documentation
-
-## Overview
 The BookMark Manager is a professional bookmark management system designed for corporate environments, offering advanced organisation, search, and management capabilities for business tools and websites.
 
 ---
