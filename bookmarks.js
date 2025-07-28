@@ -254,7 +254,7 @@ window.bookmarkApp.loadBookmarksData({
                     "name": "OneDrive",
                     "url": "https://onedrive.live.com/",
                     "logo": "",
-                    "supportType": "help",
+                    "supportType": "approval-process",
                     "tags": ["microsoft", "storage", "office"],
                     "description": "Microsoft cloud storage"
                 },

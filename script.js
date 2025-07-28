@@ -171,36 +171,6 @@ class BookmarkApp {
             this.handleSearchKeydown(e);
         });
 
-        // Hide autocomplete when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.search-container')) {
-                this.hideAutocomplete();
-            }
-            if (!e.target.closest('.settings-container')) {
-                this.hideSettingsDropdown();
-            }
-        });
-    }
-
-    setupEventListeners() {
-        // Theme selector
-        const themeSelect = document.getElementById('themeSelect');
-        themeSelect.value = this.currentTheme;
-        themeSelect.addEventListener('change', (e) => {
-            this.changeTheme(e.target.value);
-        });
-
-        // Enhanced search functionality
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            this.handleSearchInput(e.target.value);
-        });
-
-        // Search keyboard navigation
-        searchInput.addEventListener('keydown', (e) => {
-            this.handleSearchKeydown(e);
-        });
-
         // Hide dropdowns when clicking outside
         document.addEventListener('click', (e) => {
             if (!e.target.closest('.search-container')) {
@@ -3368,7 +3338,7 @@ class BookmarkApp {
                                     </div>
                                     <div class="email-template-body">
                                         <strong>Email Body:</strong>
-                                        <textarea readonly class="support-email-body">${this.generateSplitHelpSupportTemplate(bookmark)}</textarea>
+                                        <textarea id="splitHelpEmailBody" class="support-email-body" rows="15" style="width: 100%; font-family: monospace; font-size: 12px; resize: vertical;">${this.generateSplitHelpSupportTemplate(bookmark)}</textarea>
                                     </div>
                                     <div class="email-template-actions">
                                         <button class="btn-primary" onclick="bookmarkApp.sendSplitHelpSupportEmail('${bookmark.name}', '${bookmark.url}')">📧 Create Support Ticket</button>
@@ -3489,18 +3459,14 @@ class BookmarkApp {
                             
                             <div class="form-group">
                                 <h4>📧 Access Request Email</h4>
-                                <div class="support-email-template">
+                                <div class="approval-process-email-template">
                                     <div class="email-template-header">
                                         <strong>To:</strong> ${this.getDefaultSupportEmail()}<br>
                                         <strong>Subject:</strong> Access Request - ${bookmark.name}
                                     </div>
                                     <div class="email-template-body">
                                         <strong>Email Body:</strong>
-                                        <textarea readonly class="support-email-body">${this.generateApprovalProcessTemplate(bookmark, approvalInfo)}</textarea>
-                                    </div>
-                                    <div class="email-template-actions">
-                                        <button class="btn-primary" onclick="bookmarkApp.sendApprovalProcessEmail('${bookmark.name}', '${bookmark.url}')">📧 Send Request</button>
-                                        <button class="btn-secondary" onclick="bookmarkApp.copyApprovalProcessTemplate('${bookmark.name}')">📋 Copy Template</button>
+                                        <textarea id="approvalProcessEmailBody" class="support-email-body" rows="15" style="width: 100%; font-family: monospace; font-size: 12px; resize: vertical;">${this.generateApprovalProcessTemplate(bookmark, approvalInfo)}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -3509,19 +3475,30 @@ class BookmarkApp {
                                 <h4>👤 Manager CC (Required)</h4>
                                 <p>Your manager must be copied on approval requests:</p>
                                 <div class="manager-cc-input">
-                                    <input type="email" id="managerEmail" placeholder="manager@company.com" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-                                    <small style="color: #666; margin-top: 4px; display: block;">Enter your manager's email address</small>
+                                    <input type="email" id="managerEmail" placeholder="manager@company.com" style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9375rem; background-color: var(--card-background); color: var(--text-primary); transition: border-color 0.3s ease; font-family: inherit; margin-bottom: 8px;">
+                                    <small style="color: var(--text-secondary); font-size: 0.8125rem; line-height: 1.4;">Enter your manager's email address - they will be CC'd on the request</small>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <h4>📋 What to Include:</h4>
-                                <ul>
-                                    <li><strong>Business Justification:</strong> Why you need this tool</li>
-                                    <li><strong>Use Case:</strong> How you plan to use it</li>
-                                    <li><strong>Duration:</strong> How long you need access</li>
-                                    <li><strong>Alternatives:</strong> Why other tools won't work</li>
-                                </ul>
+                                <div class="email-template-actions">
+                                    <button class="btn-primary" onclick="bookmarkApp.sendApprovalProcessEmailWithManager('${bookmark.name}', '${bookmark.url}')">📧 Send Request</button>
+                                    <button class="btn-secondary" onclick="bookmarkApp.copyApprovalProcessTemplate('${bookmark.name}')">📋 Copy Template</button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="approval-process-tips">
+                                    <h4>💡 Tips for Success</h4>
+                                    <ul>
+                                        <li>Provide clear business justification for why you need this tool</li>
+                                        <li>Explain specifically how you plan to use it in your work</li>
+                                        <li>Specify how long you need access (temporary project or ongoing)</li>
+                                        <li>Mention why existing tools or alternatives won't meet your needs</li>
+                                        <li>Include your manager's approval and contact information</li>
+                                        <li>Be specific about what level of access you require</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3653,8 +3630,7 @@ Best regards,
     sendSplitHelpSupportEmail(toolName, toolUrl) {
         const supportEmail = this.getDefaultSupportEmail();
         const subject = `Support Request - ${toolName}`;
-        const bookmark = { name: toolName, url: toolUrl, description: `Support request for ${toolName}` };
-        const body = this.generateSplitHelpSupportTemplate(bookmark);
+        const body = document.getElementById('splitHelpEmailBody')?.value || this.generateSplitHelpSupportTemplate({ name: toolName, url: toolUrl, description: `Support request for ${toolName}` });
         
         const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoLink;
@@ -3683,9 +3659,7 @@ Best regards,
     sendApprovalProcessEmail(toolName, toolUrl) {
         const supportEmail = this.getDefaultSupportEmail();
         const subject = `Access Request - ${toolName}`;
-        const bookmark = { name: toolName, url: toolUrl, description: `Access request for ${toolName}` };
-        const approvalInfo = { approver: 'IT Manager', requirements: ['Business justification'], process: 'Standard approval process', estimatedTime: '3-5 business days' };
-        const body = this.generateApprovalProcessTemplate(bookmark, approvalInfo);
+        const body = document.getElementById('approvalProcessEmailBody')?.value || this.generateApprovalProcessTemplate({ name: toolName, url: toolUrl, description: `Access request for ${toolName}` }, { approver: 'IT Manager', requirements: ['Business justification'], process: 'Standard approval process', estimatedTime: '3-5 business days' });
         
         const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoLink;

@@ -3479,6 +3479,467 @@ textarea::-webkit-scrollbar-thumb:hover,
     border-color: #218838 !important;
 }
 
+/* ===== APPROVAL PROCESS MODAL STYLES ===== */
+
+/* Approval Process Form Layout */
+.approval-process-form {
+    padding: 32px 40px;
+}
+
+/* Ensure modal content has proper padding for approval process */
+.approval-process-modal .modal-form {
+    padding: 0 40px 32px 40px;
+}
+
+/* Additional padding for approval process content */
+.approval-process-modal .modal-content {
+    padding: 8px 16px;
+}
+
+.approval-process-form .form-group {
+    margin-bottom: 36px;
+}
+
+.approval-process-form .form-group:last-child {
+    margin-bottom: 32px;
+}
+
+.approval-process-form h4 {
+    color: var(--primary-color);
+    margin-bottom: 18px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.approval-process-form p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.approval-process-form ul {
+    margin: 16px 0 20px 0;
+    padding-left: 28px;
+}
+
+.approval-process-form li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    padding-left: 6px;
+    font-size: 0.9375rem;
+}
+
+/* Approval Process Tool Information */
+.approval-process-tool-info {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 28px;
+}
+
+.approval-process-tool-info h4 {
+    border-bottom: none;
+    margin-bottom: 16px;
+    padding-bottom: 0;
+}
+
+.approval-process-tool-info p {
+    margin: 10px 0;
+    font-size: 0.9375rem;
+}
+
+.approval-process-tool-info strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.approval-process-tool-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.approval-process-tool-info a:hover {
+    text-decoration: underline;
+}
+
+/* Approval Process Warning Box */
+.approval-process-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+    border: 1px solid #ffc107;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    color: #856404;
+}
+
+.approval-process-warning strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #856404;
+}
+
+/* Approval Process Info Sections */
+.approval-info-section {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+}
+
+.approval-info-section h4 {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.approval-info-section p {
+    margin: 8px 0;
+}
+
+.approval-info-section ul {
+    margin: 12px 0;
+    padding-left: 24px;
+}
+
+.approval-info-section li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Manager CC Input Section */
+.manager-cc-input {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+}
+
+.manager-cc-input input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    background-color: var(--card-background);
+    color: var(--text-primary);
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+    margin-bottom: 8px;
+}
+
+.manager-cc-input input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.1);
+}
+
+.manager-cc-input small {
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+/* Approval Process Email Template */
+.approval-process-email-template {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0;
+}
+
+.approval-process-email-template .email-template-header {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 6px 6px 0 0;
+    padding: 16px 20px;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.approval-process-email-template .email-template-body {
+    margin-top: 0;
+}
+
+.approval-process-email-template .email-template-body strong {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.approval-process-email-template .support-email-body {
+    width: 100%;
+    height: 250px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 0 0 6px 6px;
+    background: var(--card-background);
+    color: var(--text-primary);
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    resize: vertical;
+    border-top: none;
+}
+
+.approval-process-email-template .support-email-body:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.1);
+}
+
+.approval-process-email-template .email-template-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.approval-process-email-template .email-template-actions .btn-primary,
+.approval-process-email-template .email-template-actions .btn-secondary {
+    padding: 12px 20px;
+    font-size: 0.9375rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.approval-process-email-template .email-template-actions .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.approval-process-email-template .email-template-actions .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.approval-process-email-template .email-template-actions .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.approval-process-email-template .email-template-actions .btn-secondary:hover {
+    background-color: var(--background-color);
+    border-color: var(--text-secondary);
+    transform: translateY(-1px);
+}
+
+/* Approval Process Tips */
+.approval-process-tips {
+    background: rgba(var(--info-color), 0.1);
+    border: 1px solid var(--info-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.approval-process-tips h4 {
+    color: var(--info-color);
+    margin-bottom: 16px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.approval-process-tips ul {
+    margin: 12px 0 0 0;
+    padding-left: 24px;
+}
+
+.approval-process-tips li {
+    margin-bottom: 10px;
+    color: var(--info-color);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+/* Approval Process Modal Actions */
+.approval-process-modal .modal-actions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.approval-process-modal .modal-actions .btn-secondary {
+    order: 1;
+}
+
+.approval-process-modal .modal-actions .action-buttons-group {
+    order: 2;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.approval-process-modal .modal-actions .action-buttons-group .btn-primary {
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+    color: white;
+    padding: 12px 24px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    min-width: 160px;
+}
+
+.approval-process-modal .modal-actions .action-buttons-group .btn-primary:hover {
+    background-color: #e69500;
+    border-color: #e69500;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 171, 0, 0.3);
+}
+
+/* Approval Process Responsive Design */
+@media (max-width: 768px) {
+    .approval-process-form {
+        padding: 16px 0;
+    }
+    
+    .approval-process-form .form-group {
+        margin-bottom: 24px;
+    }
+    
+    .approval-process-tool-info {
+        padding: 20px;
+        margin-bottom: 24px;
+    }
+    
+    .approval-process-email-template {
+        padding: 20px;
+        margin: 16px 0;
+    }
+    
+    .approval-process-email-template .email-template-header {
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+    
+    .approval-process-email-template .support-email-body {
+        height: 200px;
+        padding: 12px;
+        font-size: 0.75rem;
+    }
+    
+    .approval-process-email-template .email-template-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .approval-process-email-template .email-template-actions .btn-primary,
+    .approval-process-email-template .email-template-actions .btn-secondary {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .manager-cc-input {
+        padding: 16px;
+    }
+    
+    .approval-info-section {
+        padding: 16px;
+    }
+    
+    .approval-process-tips {
+        padding: 16px;
+    }
+    
+    .approval-process-modal .modal-actions {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+    
+    .approval-process-modal .modal-actions .btn-secondary {
+        order: 2;
+        width: 100%;
+    }
+    
+    .approval-process-modal .modal-actions .action-buttons-group {
+        order: 1;
+        width: 100%;
+    }
+    
+    .approval-process-modal .modal-actions .action-buttons-group .btn-primary {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .approval-process-form h4 {
+        font-size: 1rem;
+        gap: 8px;
+    }
+    
+    .approval-process-tool-info {
+        padding: 16px;
+    }
+    
+    .approval-process-email-template {
+        padding: 16px;
+    }
+    
+    .approval-process-email-template .email-template-header {
+        padding: 10px 12px;
+        font-size: 0.8125rem;
+    }
+    
+    .approval-process-email-template .support-email-body {
+        height: 180px;
+        padding: 10px;
+        font-size: 0.7rem;
+    }
+    
+    .manager-cc-input {
+        padding: 12px;
+    }
+    
+    .approval-info-section {
+        padding: 12px;
+    }
+    
+    .approval-process-tips {
+        padding: 12px;
+    }
+    
+    .approval-process-warning {
+        padding: 16px;
+    }
+}
+
 /* Support Tab Responsive Design */
 @media (max-width: 768px) {
     .email-template-actions {
