@@ -127,7 +127,7 @@ Local Workstation:
 ### Keyboard Shortcuts
 - `Ctrl+F`: Focus search bar  
 - `F5`: Refresh bookmarks  
-- `F1`: Easter egg game  
+- `F1`: Easter egg?  
 
 ---
 
