@@ -1,6 +1,6 @@
 # BookMark Manager - Import Guide
 
-This guide explains how to import bookmarks from your browser into the BookMark Manager application.
+This guide explains how to import bookmarks from your browser into the BookMark Manager application, which supports both web bookmarks and desktop applications.
 
 ## Quick Start
 
@@ -128,13 +128,42 @@ echo Import completed! Refresh your BookMark Manager to see changes.
 pause
 ```
 
+## Desktop Applications
+
+### Adding Desktop Applications
+
+The BookMark Manager now supports desktop applications alongside web bookmarks. Desktop applications:
+
+- Display with a 🖥️ icon and unique styling
+- Show installation guidance when clicked
+- Support the same help system as web bookmarks
+- Can be added manually through the web interface
+
+### Desktop App vs Web Bookmark
+
+| Feature | Web Bookmark | Desktop Application |
+|---------|--------------|-------------------|
+| **Clickable** | ✅ Opens URL | ❌ Shows info modal |
+| **Visual Indicator** | 🌐 Web icon | 🖥️ Desktop icon |
+| **URL Field** | Full web URL | Application name/ID |
+| **Help System** | Full support | Full support |
+| **Installation** | Not applicable | Guidance provided |
+
+### Adding Desktop Apps via Web Interface
+
+1. Click "Add Bookmark" button
+2. Select "Desktop Application" from Type dropdown
+3. Enter application name instead of URL
+4. Fill in description, category, and help information
+5. Save - the app will display with desktop styling
+
 ## File Structure
 
 ```
 BookMarks/
 ├── index.html                 # Main application
 ├── script.js                  # Application logic
-├── bookmarks.js              # Default corporate bookmarks
+├── bookmarks.js              # Default corporate bookmarks (web + desktop)
 ├── user-bookmarks.js         # Your imported bookmarks
 ├── Copy-UserBookmarks.ps1    # Copy script
 └── Generate/
@@ -159,5 +188,5 @@ If you encounter issues:
 
 ---
 
-**Last Updated:** January 27, 2025  
-**Version:** 1.0
+**Last Updated:** July 28, 2025  
+**Version:** 2.2.7

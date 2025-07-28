@@ -1,7 +1,7 @@
 # BookMark Manager Deployment Guide
 
 ## Overview
-This guide covers deploying the BookMark Manager in corporate environments with shared corporate bookmarks and user-specific personal bookmarks.
+This guide covers deploying the BookMark Manager in corporate environments with shared corporate bookmarks and user-specific personal bookmarks. The system supports both web bookmarks and desktop applications with comprehensive help system integration.
 
 ## Table of Contents
 1. [Architecture](#architecture)
@@ -73,7 +73,21 @@ Copy-Item -Path ".\*" -Destination "\\fileserver\shares\BookMarkManager\" -Recur
       "bookmarks": [
         {
           "name": "Company Intranet",
-          "url": "https://intranet.company.com"
+          "url": "https://intranet.company.com",
+          "type": "web"
+        }
+      ]
+    },
+    {
+      "id": "desktop-apps",
+      "name": "Desktop Applications",
+      "bookmarks": [
+        {
+          "name": "Microsoft Word",
+          "url": "Microsoft Word 2021",
+          "type": "desktop",
+          "description": "Word processing application for creating documents",
+          "supportType": "help"
         }
       ]
     }
@@ -81,7 +95,35 @@ Copy-Item -Path ".\*" -Destination "\\fileserver\shares\BookMarkManager\" -Recur
 }
 ```
 
-### 2. Regenerate JavaScript
+### 2. Desktop Application Support
+
+The system now supports desktop applications alongside web bookmarks:
+
+#### Desktop App Configuration
+- **Type Field**: Set `"type": "desktop"` for desktop applications
+- **URL Field**: Use application name or identifier instead of web URL
+- **Visual Differentiation**: Desktop apps display with 🖥️ icons and unique styling
+- **Help Integration**: Full support for all 3 help types (Help, Split Help, Approval Process)
+
+#### Example Desktop Application Entry
+```json
+{
+  "name": "Adobe Photoshop",
+  "url": "Adobe Photoshop 2024",
+  "type": "desktop",
+  "description": "Professional image editing software",
+  "supportType": "approval-process",
+  "helpDescription": "Request access to Adobe Creative Suite",
+  "accessRequirements": ["Manager approval", "Business justification"],
+  "contactMethod": {
+    "type": "email",
+    "email": "software-requests@company.com",
+    "person": "IT Software Team"
+  }
+}
+```
+
+### 3. Regenerate JavaScript
 ```powershell
 .\Generate\Generate-BookmarksJS.ps1
 ```
@@ -157,8 +199,8 @@ Register-ScheduledTask -TaskName "Weekly Bookmark Update" -Action $Action -Trigg
 - 🔐 Corporate bookmarks read-only for users
 - 📁 Regular permission audits recommended
 
-**Last Updated**: 2025-07-27  
-**Version**: 2.2.6
+**Last Updated**: 2025-07-28  
+**Version**: 2.2.7
 ```
 
 ### Key Features of This Guide:

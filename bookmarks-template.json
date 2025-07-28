@@ -1,0 +1,501 @@
+{
+  "_comments": {
+    "description": "Complete BookMark Manager JSON Template v2.2.7",
+    "purpose": "This template demonstrates every available field and feature for sysadmin preparation",
+    "usage": "Edit this file with your organization's data, then run Generate-BookmarksJS.ps1 to create bookmarks.js",
+    "features": [
+      "Web bookmarks and desktop applications",
+      "All 3 help system types (help, split-help, approval-process)",
+      "All contact methods (email, phone, meeting, self-service)",
+      "Knowledge base integration",
+      "Category organization with colors and descriptions",
+      "Tag system for flexible organization",
+      "Responsive design support"
+    ]
+  },
+  "settings": {
+    "helpSystem": {
+      "sections": [
+        {
+          "title": "📋 Overview",
+          "id": "overview",
+          "content": {
+            "tips": [
+              {
+                "icon": "💡",
+                "text": "Click on any ❓ icon throughout the interface for context-specific help."
+              },
+              {
+                "icon": "🖥️",
+                "text": "Desktop applications show installation guidance when clicked."
+              }
+            ],
+            "features": [
+              {
+                "name": "Search & Filter",
+                "description": "Use the search bar to find bookmarks quickly, or filter by categories and tags."
+              },
+              {
+                "name": "Desktop Applications",
+                "description": "Manage both web bookmarks and desktop applications in one interface."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "defaultTheme": "corporate-blue",
+    "version": "2.2.7",
+    "helpDesk": {
+      "defaultEmail": "helpdesk@company.com",
+      "emailBodyTemplate": "Hello IT Support,\n\nI need assistance with the following service:\n\nService: {serviceName}\nURL: {serviceUrl}\nDescription: {serviceDescription}\n\nIssue Description:\n[Please describe your issue here]\n\nSystem Information:\n- Browser: {browserInfo}\n- Hostname: {hostname}\n- Date/Time: {timestamp}\n- User: {userName}\n\nAdditional Information:\n[Any other relevant details]\n\nThank you for your assistance.\n\nBest regards,\n{userName}",
+      "emailSubjectTemplate": "Help Request: {serviceName}"
+    }
+  },
+  "categories": [
+    {
+      "name": "Microsoft 365 Admin",
+      "id": "m365-admin",
+      "color": "#0078D4",
+      "description": "Administrative tools for Microsoft 365 management",
+      "collapsed": false,
+      "bookmarks": [
+        {
+          "name": "Microsoft 365 Admin Center",
+          "url": "https://admin.microsoft.com",
+          "logo": "https://img.icons8.com/color/48/microsoft-365.png",
+          "type": "web",
+          "supportType": "help",
+          "tags": ["admin", "m365", "management"],
+          "description": "Central administration portal for Microsoft 365 services",
+          "helpDescription": "Self-service help for Microsoft 365 administration",
+          "helpPurpose": "Manage users, licenses, and services in your Microsoft 365 tenant",
+          "accessLevel": "Admin",
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "M365 Admin Fundamentals",
+                "url": "https://docs.microsoft.com/learn/paths/m365-fundamentals/",
+                "description": "Complete training path for M365 administration",
+                "estimatedTime": "4 hours",
+                "level": "Beginner"
+              }
+            ],
+            "quickReference": [
+              {
+                "title": "Admin Center Quick Reference",
+                "url": "/docs/quick-reference/m365-admin-quick-ref.md",
+                "description": "Common admin tasks and shortcuts"
+              }
+            ],
+            "policies": [
+              {
+                "title": "M365 Security Policy",
+                "url": "/docs/policies/m365-security-policy.md",
+                "description": "Security guidelines for M365 administration"
+              }
+            ],
+            "externalLinks": [
+              {
+                "title": "Microsoft 365 Roadmap",
+                "url": "https://www.microsoft.com/microsoft-365/roadmap",
+                "description": "Latest features and updates"
+              }
+            ]
+          },
+          "contactMethod": {
+            "type": "self-service",
+            "email": "m365-support@company.com"
+          }
+        },
+        {
+          "name": "Azure Active Directory",
+          "url": "https://aad.portal.azure.com",
+          "logo": "https://img.icons8.com/color/48/azure-active-directory.png",
+          "type": "web",
+          "supportType": "split-help",
+          "tags": ["azure", "identity", "security"],
+          "description": "Identity and access management service",
+          "helpDescription": "Azure AD management with support options",
+          "helpPurpose": "Manage user identities, groups, and access policies",
+          "accessLevel": "Admin",
+          "contactMethod": {
+            "type": "email",
+            "email": "azure-support@company.com",
+            "person": "Azure Identity Team",
+            "responseTime": "4-6 hours during business hours"
+          },
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "Azure AD Administration",
+                "url": "https://docs.microsoft.com/learn/paths/azure-ad-admin/",
+                "description": "Comprehensive Azure AD training",
+                "estimatedTime": "6 hours",
+                "level": "Intermediate"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Microsoft Word",
+          "url": "Microsoft Word 2021",
+          "logo": "https://img.icons8.com/color/48/microsoft-word-2019.png",
+          "type": "desktop",
+          "supportType": "help",
+          "tags": ["office", "documents", "word-processing"],
+          "description": "Word processing application for creating and editing documents",
+          "helpDescription": "Self-service help for Microsoft Word",
+          "helpPurpose": "Create, edit, and format professional documents",
+          "accessLevel": "Standard User",
+          "installationGuidance": {
+            "requirements": [
+              "Windows 10 or later",
+              "4GB RAM minimum",
+              "Microsoft 365 license"
+            ],
+            "installationSteps": [
+              "Open Microsoft 365 portal",
+              "Click 'Install Office'",
+              "Run the downloaded installer",
+              "Sign in with your company account"
+            ],
+            "troubleshooting": [
+              "Ensure you have admin rights for installation",
+              "Check internet connection during download",
+              "Contact IT if activation fails"
+            ]
+          },
+          "contactMethod": {
+            "type": "self-service",
+            "email": "office-support@company.com"
+          },
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "Word Essentials",
+                "url": "/docs/training/word-essentials.md",
+                "description": "Basic Word functionality and features",
+                "estimatedTime": "2 hours",
+                "level": "Beginner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Adobe Photoshop",
+          "url": "Adobe Photoshop 2024",
+          "logo": "https://img.icons8.com/color/48/adobe-photoshop.png",
+          "type": "desktop",
+          "supportType": "approval-process",
+          "tags": ["creative", "image-editing", "design"],
+          "description": "Professional image editing and graphic design software",
+          "helpDescription": "Request access to Adobe Creative Suite",
+          "helpPurpose": "Professional image editing and creative design work",
+          "accessLevel": "Restricted - Approval Required",
+          "approvalInfo": {
+            "approver": "Creative Software Manager",
+            "requirements": [
+              "Business justification for creative work",
+              "Manager approval",
+              "Adobe Creative Suite training completion",
+              "Project details and timeline"
+            ],
+            "process": "Submit request with detailed business case explaining the need for Photoshop access, including specific projects and expected usage",
+            "estimatedTime": "3-5 business days",
+            "costCenter": "Creative Services",
+            "licenseType": "Named User License"
+          },
+          "installationGuidance": {
+            "requirements": [
+              "Windows 10 (64-bit) or later",
+              "8GB RAM minimum (16GB recommended)",
+              "4GB available hard-disk space",
+              "Adobe Creative Cloud license"
+            ],
+            "installationSteps": [
+              "Approval must be obtained first",
+              "IT will provide Creative Cloud access",
+              "Download from Creative Cloud app",
+              "Sign in with provided Adobe ID"
+            ],
+            "troubleshooting": [
+              "Ensure approval is complete before installation",
+              "Check system requirements",
+              "Contact Creative Services team for license issues"
+            ]
+          },
+          "contactMethod": {
+            "type": "email",
+            "email": "creative-software@company.com",
+            "person": "Creative Software Team",
+            "responseTime": "1-2 business days"
+          },
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "Photoshop Fundamentals",
+                "url": "/docs/training/photoshop-basics.md",
+                "description": "Essential Photoshop skills and workflows",
+                "estimatedTime": "8 hours",
+                "level": "Beginner",
+                "prerequisites": ["Basic computer skills", "Design fundamentals"]
+              }
+            ],
+            "policies": [
+              {
+                "title": "Creative Software Usage Policy",
+                "url": "/docs/policies/creative-software-policy.md",
+                "description": "Guidelines for using Adobe Creative Suite"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Development Tools",
+      "id": "development-tools",
+      "color": "#24292e",
+      "description": "Software development and coding resources",
+      "collapsed": false,
+      "bookmarks": [
+        {
+          "name": "GitHub Enterprise",
+          "url": "https://github.company.com",
+          "logo": "https://img.icons8.com/material-outlined/48/github.png",
+          "type": "web",
+          "supportType": "split-help",
+          "tags": ["git", "version-control", "collaboration"],
+          "description": "Enterprise code repository and collaboration platform",
+          "helpDescription": "GitHub Enterprise support with self-service and ticket options",
+          "helpPurpose": "Version control, code collaboration, and project management",
+          "accessLevel": "Developer",
+          "contactMethod": {
+            "type": "meeting",
+            "person": "DevOps Team",
+            "meetingSubject": "GitHub Enterprise Support",
+            "meetingSlots": [
+              "Tuesday 2:00-4:00 PM",
+              "Thursday 10:00 AM-12:00 PM",
+              "Friday 1:00-3:00 PM"
+            ],
+            "bookingInstructions": "Book through Outlook calendar or email devops@company.com"
+          },
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "Git and GitHub Fundamentals",
+                "url": "/docs/training/git-github-basics.md",
+                "description": "Version control basics and GitHub workflows",
+                "estimatedTime": "4 hours",
+                "level": "Beginner"
+              }
+            ],
+            "quickReference": [
+              {
+                "title": "Git Command Cheat Sheet",
+                "url": "/docs/quick-reference/git-commands.md",
+                "description": "Common Git commands and workflows"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Visual Studio Code",
+          "url": "Visual Studio Code",
+          "logo": "https://img.icons8.com/color/48/visual-studio-code-2019.png",
+          "type": "desktop",
+          "supportType": "help",
+          "tags": ["editor", "ide", "development"],
+          "description": "Lightweight but powerful source code editor",
+          "helpDescription": "Self-service help for Visual Studio Code",
+          "helpPurpose": "Code editing, debugging, and extension management",
+          "accessLevel": "Standard User",
+          "installationGuidance": {
+            "requirements": [
+              "Windows 8.1 or later",
+              "1.6 GHz processor",
+              "1 GB RAM"
+            ],
+            "installationSteps": [
+              "Download from official VS Code website",
+              "Run installer as administrator",
+              "Choose installation options",
+              "Install recommended extensions"
+            ],
+            "recommendedExtensions": [
+              "GitLens",
+              "Prettier",
+              "ESLint",
+              "Python",
+              "Live Server"
+            ]
+          },
+          "contactMethod": {
+            "type": "self-service",
+            "email": "dev-tools@company.com"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Communication Tools",
+      "id": "communication-tools",
+      "color": "#611f69",
+      "description": "Team messaging and video conferencing",
+      "collapsed": false,
+      "bookmarks": [
+        {
+          "name": "Microsoft Teams",
+          "url": "https://teams.microsoft.com",
+          "logo": "https://img.icons8.com/color/48/microsoft-teams.png",
+          "type": "web",
+          "supportType": "help",
+          "tags": ["collaboration", "meetings", "chat"],
+          "description": "Unified communication and collaboration platform",
+          "helpDescription": "Self-service help for Microsoft Teams",
+          "helpPurpose": "Team collaboration, video meetings, and file sharing",
+          "accessLevel": "Standard User",
+          "contactMethod": {
+            "type": "phone",
+            "phone": "+1-555-0123",
+            "extension": "2847",
+            "person": "IT Help Desk",
+            "hours": "Monday-Friday 8:00 AM - 6:00 PM EST",
+            "callScript": "Hi, I need help with Microsoft Teams. My name is [NAME] and I'm having trouble with [SPECIFIC ISSUE]. My employee ID is [ID]."
+          },
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "Teams Collaboration Basics",
+                "url": "/docs/training/teams-basics.md",
+                "description": "Getting started with Teams features",
+                "estimatedTime": "2 hours",
+                "level": "Beginner"
+              }
+            ],
+            "quickReference": [
+              {
+                "title": "Teams Keyboard Shortcuts",
+                "url": "/docs/quick-reference/teams-shortcuts.md",
+                "description": "Productivity shortcuts for Teams"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Security Tools",
+      "id": "security-tools",
+      "color": "#DC3545",
+      "description": "Cybersecurity and compliance tools",
+      "collapsed": false,
+      "bookmarks": [
+        {
+          "name": "LastPass Enterprise",
+          "url": "https://lastpass.company.com",
+          "logo": "https://img.icons8.com/color/48/lastpass.png",
+          "type": "web",
+          "supportType": "approval-process",
+          "tags": ["password-manager", "security", "vault"],
+          "description": "Enterprise password management solution",
+          "helpDescription": "Request access to LastPass Enterprise",
+          "helpPurpose": "Secure password storage and sharing for business accounts",
+          "accessLevel": "Restricted - Security Approval Required",
+          "approvalInfo": {
+            "approver": "IT Security Manager",
+            "requirements": [
+              "Business justification for password manager access",
+              "Manager approval",
+              "Security awareness training completion",
+              "Multi-factor authentication setup"
+            ],
+            "process": "Submit security request form with business case explaining need for password manager. Include details about accounts to be managed and sharing requirements.",
+            "estimatedTime": "2-3 business days",
+            "securityReview": true,
+            "complianceCheck": true
+          },
+          "contactMethod": {
+            "type": "email",
+            "email": "security-requests@company.com",
+            "person": "IT Security Team",
+            "responseTime": "24 hours for security requests"
+          },
+          "knowledgeBase": {
+            "training": [
+              {
+                "title": "Security Awareness Training",
+                "url": "/docs/training/security-awareness.md",
+                "description": "Essential security practices and password management",
+                "estimatedTime": "3 hours",
+                "level": "Beginner",
+                "required": true
+              }
+            ],
+            "policies": [
+              {
+                "title": "Password Management Policy",
+                "url": "/docs/policies/password-policy.md",
+                "description": "Corporate password requirements and guidelines"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Utilities",
+      "id": "utilities",
+      "color": "#FF6D00",
+      "description": "Daily productivity and utility tools",
+      "collapsed": true,
+      "bookmarks": [
+        {
+          "name": "PDF Converter",
+          "url": "https://smallpdf.com",
+          "logo": "https://img.icons8.com/color/48/pdf.png",
+          "type": "web",
+          "supportType": "help",
+          "tags": ["pdf", "conversion", "documents"],
+          "description": "Online PDF processing and conversion tools",
+          "helpDescription": "Self-service help for PDF tools",
+          "helpPurpose": "Convert, compress, and edit PDF documents",
+          "accessLevel": "Standard User",
+          "contactMethod": {
+            "type": "self-service",
+            "email": "general-support@company.com"
+          }
+        },
+        {
+          "name": "Calculator Plus",
+          "url": "Calculator",
+          "logo": "https://img.icons8.com/color/48/calculator.png",
+          "type": "desktop",
+          "supportType": "help",
+          "tags": ["calculator", "math", "utility"],
+          "description": "Advanced calculator application with scientific functions",
+          "helpDescription": "Self-service help for Calculator",
+          "helpPurpose": "Perform mathematical calculations and conversions",
+          "accessLevel": "Standard User",
+          "installationGuidance": {
+            "requirements": [
+              "Windows 10 or later",
+              "Minimal system requirements"
+            ],
+            "installationSteps": [
+              "Available by default in Windows",
+              "Search 'Calculator' in Start menu",
+              "Pin to taskbar for quick access"
+            ]
+          },
+          "contactMethod": {
+            "type": "self-service",
+            "email": "general-support@company.com"
+          }
+        }
+      ]
+    }
+  ]
+}

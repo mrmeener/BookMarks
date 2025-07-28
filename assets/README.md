@@ -109,6 +109,7 @@ To modify logo styling, edit the CSS classes in `styles.css`:
 
 - **v1.0**: Initial SVG placeholder logo with "CO" text
 - **v1.1**: Added file share support and comprehensive documentation
+- **v2.2.7**: Updated for desktop application support and enhanced bookmark management
 
 ---
 

@@ -3,784 +3,777 @@
 // Edit bookmarks.json and regenerate this file to update bookmarks
 
 window.bookmarkApp.loadBookmarksData({
-    "settings":  {
-                     "helpSystem":  {
-                                        "sections":  [
-                                                         {
-                                                             "title":  "📋 Overview",
-                                                             "id":  "overview",
-                                                             "content":  {
-                                                                             "tips":  [
-                                                                                          {
-                                                                                              "icon":  "💡",
-                                                                                              "text":  "Click on any ❓ icon throughout the interface for context-specific help."
-                                                                                          }
-                                                                                      ],
-                                                                             "features":  [
-                                                                                              {
-                                                                                                  "description":  "Organise bookmarks into logical groups (M365 Sites, Admin Tools, LOB Sites, etc.)",
-                                                                                                  "title":  "Categories"
-                                                                                              },
-                                                                                              {
-                                                                                                  "description":  "Quickly find bookmarks by name, description, or tags",
-                                                                                                  "title":  "Search"
-                                                                                              },
-                                                                                              {
-                                                                                                  "description":  "Filter bookmarks using multiple tags",
-                                                                                                  "title":  "Tags"
-                                                                                              },
-                                                                                              {
-                                                                                                  "description":  "Choose from professional color schemes",
-                                                                                                  "title":  "Themes"
-                                                                                              },
-                                                                                              {
-                                                                                                  "description":  "Backup your data or sync with browsers",
-                                                                                                  "title":  "Import/Export"
-                                                                                              }
-                                                                                          ],
-                                                                             "description":  "BookMark Manager is a professional bookmark organisation system designed for corporate and business use."
-                                                                         }
-                                                         }
-                                                     ]
-                                    },
-                     "defaultTheme":  "admin-dark",
-                     "version":  "2.2.0",
-                     "helpDesk":  {
-                                      "defaultEmail":  "propakit@cpcfoods.co.uk",
-                                      "emailBodyTemplate":  "Hello IT Support,\n\nI need assistance with the following service:\n\nService: {serviceName}\nURL: {serviceUrl}\nDescription: {serviceDescription}\n\nIssue Description:\n[Please describe your issue here]\n\nSystem Information:\n- Browser: {browserInfo}\n- Hostname: {hostname}\n- Date/Time: {timestamp}\n- User: {userName}\n\nAdditional Information:\n[Any other relevant details]\n\nThank you for your assistance.\n\nBest regards,\n{userName}",
-                                      "emailSubjectTemplate":  "Help Request: {serviceName}"
-                                  }
-                 },
-    "categories":  [
-                       {
-                           "name":  "Productivity Suite",
-                           "id":  "productivity-suite",
-                           "color":  "#4285F4",
-                           "description":  "Essential tools for workflow management",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "Google Workspace",
-                                                 "url":  "https://workspace.google.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "popup",
-                                                 "tags":  ["docs", "email", "collaboration"],
-                                                 "description":  "Cloud-based productivity suite"
-                                             },
-                                             {
-                                                 "name":  "Microsoft 365",
-                                                 "url":  "https://www.microsoft.com/microsoft-365",
-                                                 "logo":  "",
-                                                 "supportType":  "ticket",
-                                                 "tags":  ["office", "cloud", "productivity"],
-                                                 "description":  "Office applications and cloud services"
-                                             },
-                                             {
-                                                 "name":  "Trello",
-                                                 "url":  "https://trello.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["kanban", "tasks", "management"],
-                                                 "description":  "Visual project management tool"
-                                             },
-                                             {
-                                                 "name":  "Notion",
-                                                 "url":  "https://www.notion.so/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["wiki", "notes", "database"],
-                                                 "description":  "All-in-one workspace platform"
-                                             },
-                                             {
-                                                 "name":  "Asana",
-                                                 "url":  "https://asana.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["projects", "tasks", "teams"],
-                                                 "description":  "Team task management solution"
-                                             },
-                                             {
-                                                 "name":  "Todoist",
-                                                 "url":  "https://todoist.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["tasks", "reminders", "gtd"],
-                                                 "description":  "Personal task manager"
-                                             },
-                                             {
-                                                 "name":  "Evernote",
-                                                 "url":  "https://evernote.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["notes", "organization", "sync"],
-                                                 "description":  "Note-taking and organization"
-                                             },
-                                             {
-                                                 "name":  "Zapier",
-                                                 "url":  "https://zapier.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["automation", "integration", "workflow"],
-                                                 "description":  "App integration automation"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Development Tools",
-                           "id":  "development-tools",
-                           "color":  "#24292e",
-                           "description":  "Coding and deployment resources",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "GitHub",
-                                                 "url":  "https://github.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["git", "code", "version-control"],
-                                                 "description":  "Code hosting and collaboration"
-                                             },
-                                             {
-                                                 "name":  "GitLab",
-                                                 "url":  "https://gitlab.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["ci-cd", "devops", "repository"],
-                                                 "description":  "Complete DevOps platform"
-                                             },
-                                             {
-                                                 "name":  "Stack Overflow",
-                                                 "url":  "https://stackoverflow.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["q&a", "coding", "help"],
-                                                 "description":  "Developer Q&A community"
-                                             },
-                                             {
-                                                 "name":  "VS Code Docs",
-                                                 "url":  "https://code.visualstudio.com/docs",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["editor", "docs", "extension"],
-                                                 "description":  "Visual Studio Code documentation"
-                                             },
-                                             {
-                                                 "name":  "Docker Hub",
-                                                 "url":  "https://hub.docker.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["containers", "images", "registry"],
-                                                 "description":  "Container image repository"
-                                             },
-                                             {
-                                                 "name":  "Postman",
-                                                 "url":  "https://www.postman.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["api", "testing", "rest"],
-                                                 "description":  "API development environment"
-                                             },
-                                             {
-                                                 "name":  "AWS Console",
-                                                 "url":  "https://aws.amazon.com/console/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["cloud", "services", "hosting"],
-                                                 "description":  "Amazon Web Services dashboard"
-                                             },
-                                             {
-                                                 "name":  "DigitalOcean",
-                                                 "url":  "https://www.digitalocean.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["vps", "cloud", "hosting"],
-                                                 "description":  "Cloud infrastructure provider"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Cloud Storage",
-                           "id":  "cloud-storage",
-                           "color":  "#0F9D58",
-                           "description":  "File storage and sharing services",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "Google Drive",
-                                                 "url":  "https://drive.google.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["storage", "docs", "sharing"],
-                                                 "description":  "Cloud file storage and sync"
-                                             },
-                                             {
-                                                 "name":  "Dropbox",
-                                                 "url":  "https://www.dropbox.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["files", "backup", "share"],
-                                                 "description":  "File hosting service"
-                                             },
-                                             {
-                                                 "name":  "OneDrive",
-                                                 "url":  "https://onedrive.live.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["microsoft", "storage", "office"],
-                                                 "description":  "Microsoft cloud storage"
-                                             },
-                                             {
-                                                 "name":  "Box",
-                                                 "url":  "https://www.box.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["enterprise", "secure", "collaboration"],
-                                                 "description":  "Cloud content management"
-                                             },
-                                             {
-                                                 "name":  "iCloud",
-                                                 "url":  "https://www.icloud.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["apple", "sync", "backup"],
-                                                 "description":  "Apple cloud services"
-                                             },
-                                             {
-                                                 "name":  "pCloud",
-                                                 "url":  "https://www.pcloud.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["secure", "encrypted", "lifetime"],
-                                                 "description":  "European cloud storage"
-                                             },
-                                             {
-                                                 "name":  "Mega",
-                                                 "url":  "https://mega.nz/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["encryption", "large-files", "secure"],
-                                                 "description":  "End-to-end encrypted storage"
-                                             },
-                                             {
-                                                 "name":  "Backblaze",
-                                                 "url":  "https://www.backblaze.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["backup", "b2", "cloud"],
-                                                 "description":  "Cloud backup and storage"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Design Resources",
-                           "id":  "design-resources",
-                           "color":  "#FF3E00",
-                           "description":  "Creative tools and assets",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "Figma",
-                                                 "url":  "https://www.figma.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["ui", "ux", "prototyping"],
-                                                 "description":  "Collaborative interface design"
-                                             },
-                                             {
-                                                 "name":  "Adobe Creative Cloud",
-                                                 "url":  "https://www.adobe.com/creativecloud.html",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["photoshop", "illustrator", "premiere"],
-                                                 "description":  "Professional creative tools"
-                                             },
-                                             {
-                                                 "name":  "Canva",
-                                                 "url":  "https://www.canva.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["templates", "graphics", "social"],
-                                                 "description":  "Graphic design platform"
-                                             },
-                                             {
-                                                 "name":  "Dribbble",
-                                                 "url":  "https://dribbble.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["inspiration", "portfolio", "designers"],
-                                                 "description":  "Designer community showcase"
-                                             },
-                                             {
-                                                 "name":  "Behance",
-                                                 "url":  "https://www.behance.net/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["portfolio", "creative", "showcase"],
-                                                 "description":  "Creative work portfolio platform"
-                                             },
-                                             {
-                                                 "name":  "Unsplash",
-                                                 "url":  "https://unsplash.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["photos", "free", "stock"],
-                                                 "description":  "High-quality free photos"
-                                             },
-                                             {
-                                                 "name":  "Font Awesome",
-                                                 "url":  "https://fontawesome.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["icons", "fonts", "svg"],
-                                                 "description":  "Icon library and toolkit"
-                                             },
-                                             {
-                                                 "name":  "Coolors",
-                                                 "url":  "https://coolors.co/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["palette", "colors", "schemes"],
-                                                 "description":  "Color scheme generator"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Communication",
-                           "id":  "communication",
-                           "color":  "#611f69",
-                           "description":  "Team messaging and conferencing",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "Slack",
-                                                 "url":  "https://slack.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["teams", "chat", "channels"],
-                                                 "description":  "Business communication platform"
-                                             },
-                                             {
-                                                 "name":  "Microsoft Teams",
-                                                 "url":  "https://www.microsoft.com/microsoft-teams",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["office", "meetings", "collab"],
-                                                 "description":  "Office integrated collaboration"
-                                             },
-                                             {
-                                                 "name":  "Zoom",
-                                                 "url":  "https://zoom.us/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["video", "conferencing", "webinar"],
-                                                 "description":  "Video communications platform"
-                                             },
-                                             {
-                                                 "name":  "Google Meet",
-                                                 "url":  "https://meet.google.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["video", "conference", "g-suite"],
-                                                 "description":  "Google video meeting solution"
-                                             },
-                                             {
-                                                 "name":  "Discord",
-                                                 "url":  "https://discord.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["voice", "chat", "communities"],
-                                                 "description":  "Voice and text communication"
-                                             },
-                                             {
-                                                 "name":  "Webex",
-                                                 "url":  "https://www.webex.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["cisco", "meetings", "calling"],
-                                                 "description":  "Cisco collaboration suite"
-                                             },
-                                             {
-                                                 "name":  "Signal",
-                                                 "url":  "https://signal.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["secure", "private", "messaging"],
-                                                 "description":  "Encrypted private messaging"
-                                             },
-                                             {
-                                                 "name":  "Telegram",
-                                                 "url":  "https://telegram.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["messaging", "secure", "cloud"],
-                                                 "description":  "Cloud-based instant messaging"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Learning & Docs",
-                           "id":  "learning-docs",
-                           "color":  "#0056D2",
-                           "description":  "Technical references and courses",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "MDN Web Docs",
-                                                 "url":  "https://developer.mozilla.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["web", "reference", "standards"],
-                                                 "description":  "Web technology documentation"
-                                             },
-                                             {
-                                                 "name":  "W3Schools",
-                                                 "url":  "https://www.w3schools.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["tutorials", "html", "css"],
-                                                 "description":  "Web development tutorials"
-                                             },
-                                             {
-                                                 "name":  "Stack Overflow",
-                                                 "url":  "https://stackoverflow.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["q&a", "coding", "help"],
-                                                 "description":  "Programming Q&A community"
-                                             },
-                                             {
-                                                 "name":  "freeCodeCamp",
-                                                 "url":  "https://www.freecodecamp.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["courses", "certification", "coding"],
-                                                 "description":  "Coding curriculum and practice"
-                                             },
-                                             {
-                                                 "name":  "Coursera",
-                                                 "url":  "https://www.coursera.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["courses", "degrees", "online"],
-                                                 "description":  "Online courses from universities"
-                                             },
-                                             {
-                                                 "name":  "Udemy",
-                                                 "url":  "https://www.udemy.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["courses", "video", "skills"],
-                                                 "description":  "Online learning marketplace"
-                                             },
-                                             {
-                                                 "name":  "Khan Academy",
-                                                 "url":  "https://www.khanacademy.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["free", "education", "math"],
-                                                 "description":  "Free educational resources"
-                                             },
-                                             {
-                                                 "name":  "Pluralsight",
-                                                 "url":  "https://www.pluralsight.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["tech", "courses", "skills"],
-                                                 "description":  "Technology skill development"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "News & Insights",
-                           "id":  "news-insights",
-                           "color":  "#FF4D00",
-                           "description":  "Tech news and industry updates",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "Hacker News",
-                                                 "url":  "https://news.ycombinator.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["tech", "startups", "programming"],
-                                                 "description":  "Tech entrepreneur community"
-                                             },
-                                             {
-                                                 "name":  "TechCrunch",
-                                                 "url":  "https://techcrunch.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["startups", "vc", "tech-news"],
-                                                 "description":  "Technology industry news"
-                                             },
-                                             {
-                                                 "name":  "Ars Technica",
-                                                 "url":  "https://arstechnica.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["science", "policy", "tech"],
-                                                 "description":  "In-depth technology analysis"
-                                             },
-                                             {
-                                                 "name":  "The Verge",
-                                                 "url":  "https://www.theverge.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["gadgets", "reviews", "culture"],
-                                                 "description":  "Technology and media coverage"
-                                             },
-                                             {
-                                                 "name":  "Reddit (r/programming)",
-                                                 "url":  "https://www.reddit.com/r/programming/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["community", "discussion", "news"],
-                                                 "description":  "Programming discussions"
-                                             },
-                                             {
-                                                 "name":  "Product Hunt",
-                                                 "url":  "https://www.producthunt.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["products", "launches", "tools"],
-                                                 "description":  "New product discoveries"
-                                             },
-                                             {
-                                                 "name":  "Bloomberg Tech",
-                                                 "url":  "https://www.bloomberg.com/technology",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["business", "finance", "markets"],
-                                                 "description":  "Business and tech news"
-                                             },
-                                             {
-                                                 "name":  "Reuters Tech",
-                                                 "url":  "https://www.reuters.com/technology/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["global", "news", "updates"],
-                                                 "description":  "Global technology news"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Security & IT",
-                           "id":  "security-it",
-                           "color":  "#000000",
-                           "description":  "Cybersecurity and system tools",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "LastPass",
-                                                 "url":  "https://www.lastpass.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["passwords", "manager", "security"],
-                                                 "description":  "Password management solution"
-                                             },
-                                             {
-                                                 "name":  "1Password",
-                                                 "url":  "https://1password.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["passwords", "secure", "vault"],
-                                                 "description":  "Enterprise password manager"
-                                             },
-                                             {
-                                                 "name":  "Malwarebytes",
-                                                 "url":  "https://www.malwarebytes.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["antivirus", "malware", "protection"],
-                                                 "description":  "Malware detection and removal"
-                                             },
-                                             {
-                                                 "name":  "VirusTotal",
-                                                 "url":  "https://www.virustotal.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["scanner", "security", "analysis"],
-                                                 "description":  "File and URL scanner"
-                                             },
-                                             {
-                                                 "name":  "Let's Encrypt",
-                                                 "url":  "https://letsencrypt.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["ssl", "tls", "certificates"],
-                                                 "description":  "Free SSL/TLS certificates"
-                                             },
-                                             {
-                                                 "name":  "WireGuard",
-                                                 "url":  "https://www.wireguard.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["vpn", "secure", "networking"],
-                                                 "description":  "Modern VPN protocol"
-                                             },
-                                             {
-                                                 "name":  "Have I Been Pwned",
-                                                 "url":  "https://haveibeenpwned.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["security", "breach", "monitoring"],
-                                                 "description":  "Data breach monitoring"
-                                             },
-                                             {
-                                                 "name":  "DuckDuckGo",
-                                                 "url":  "https://duckduckgo.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["search", "privacy", "tracking"],
-                                                 "description":  "Privacy-focused search engine"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Data & Analytics",
-                           "id":  "data-analytics",
-                           "color":  "#00B0FF",
-                           "description":  "Data processing and visualization",
-                           "collapsed":  false,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "Google Analytics",
-                                                 "url":  "https://analytics.google.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["analytics", "tracking", "seo"],
-                                                 "description":  "Web analytics service"
-                                             },
-                                             {
-                                                 "name":  "Tableau",
-                                                 "url":  "https://www.tableau.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["bi", "visualization", "dashboards"],
-                                                 "description":  "Business intelligence platform"
-                                             },
-                                             {
-                                                 "name":  "Power BI",
-                                                 "url":  "https://powerbi.microsoft.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["microsoft", "reports", "analytics"],
-                                                 "description":  "Microsoft analytics service"
-                                             },
-                                             {
-                                                 "name":  "Kaggle",
-                                                 "url":  "https://www.kaggle.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["datasets", "competitions", "notebooks"],
-                                                 "description":  "Data science community"
-                                             },
-                                             {
-                                                 "name":  "Grafana",
-                                                 "url":  "https://grafana.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["monitoring", "metrics", "dashboards"],
-                                                 "description":  "Observability platform"
-                                             },
-                                             {
-                                                 "name":  "RapidAPI",
-                                                 "url":  "https://rapidapi.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["api", "marketplace", "integration"],
-                                                 "description":  "API hub and marketplace"
-                                             },
-                                             {
-                                                 "name":  "JSON Formatter",
-                                                 "url":  "https://jsonformatter.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["json", "tools", "format"],
-                                                 "description":  "JSON validation and formatting"
-                                             },
-                                             {
-                                                 "name":  "OpenRefine",
-                                                 "url":  "https://openrefine.org/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["data", "cleaning", "transformation"],
-                                                 "description":  "Data cleaning tool"
-                                             }
-                                         ]
-                       },
-                       {
-                           "name":  "Utilities",
-                           "id":  "utilities",
-                           "color":  "#FF6D00",
-                           "description":  "Daily productivity tools",
-                           "collapsed":  true,
-                           "bookmarks":  [
-                                             {
-                                                 "name":  "DeepL Translate",
-                                                 "url":  "https://www.deepl.com/translator",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["translation", "ai", "languages"],
-                                                 "description":  "AI-powered translation service"
-                                             },
-                                             {
-                                                 "name":  "Grammarly",
-                                                 "url":  "https://www.grammarly.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["writing", "grammar", "proofreading"],
-                                                 "description":  "Writing assistant"
-                                             },
-                                             {
-                                                 "name":  "Smallpdf",
-                                                 "url":  "https://smallpdf.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["pdf", "tools", "conversion"],
-                                                 "description":  "PDF processing tools"
-                                             },
-                                             {
-                                                 "name":  "Jira",
-                                                 "url":  "https://www.atlassian.com/software/jira",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["issues", "projects", "tracking"],
-                                                 "description":  "Project management software"
-                                             },
-                                             {
-                                                 "name":  "IFTTT",
-                                                 "url":  "https://ifttt.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["automation", "applets", "integration"],
-                                                 "description":  "Applet-based automation"
-                                             },
-                                             {
-                                                 "name":  "World Time Buddy",
-                                                 "url":  "https://www.worldtimebuddy.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["time", "zones", "converter"],
-                                                 "description":  "Time zone converter"
-                                             },
-                                             {
-                                                 "name":  "Remove.bg",
-                                                 "url":  "https://www.remove.bg/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["background", "remove", "images"],
-                                                 "description":  "Background removal tool"
-                                             },
-                                             {
-                                                 "name":  "TinyPNG",
-                                                 "url":  "https://tinypng.com/",
-                                                 "logo":  "",
-                                                 "supportType":  "none",
-                                                 "tags":  ["compress", "images", "optimization"],
-                                                 "description":  "Image compression service"
-                                             }
-                                         ]
-                       }
-                   ]
+    "settings": {
+        "helpSystem": {
+            "sections": [
+                {
+                    "title": "📋 Overview",
+                    "id": "overview",
+                    "content": {
+                        "tips": [
+                            {
+                                "icon": "💡",
+                                "text": "Click on any ❓ icon throughout the interface for context-specific help."
+                            }
+                        ],
+                        "features": [
+                            {
+                                "name": "Search & Filter",
+                                "description": "Use the search bar to find bookmarks quickly, or filter by categories and tags."
+                            },
+                            {
+                                "name": "Custom Categories",
+                                "description": "Organize bookmarks into personalized categories with custom colors and descriptions."
+                            },
+                            {
+                                "name": "Tag System",
+                                "description": "Add multiple tags to bookmarks for flexible organization and discovery."
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "defaultTheme": "admin-dark",
+        "version": "2.2.0",
+        "helpDesk": {
+            "defaultEmail": "propakit@cpcfoods.co.uk",
+            "emailBodyTemplate": "Hello IT Support,\n\nI need assistance with the following service:\n\nService: {serviceName}\nURL: {serviceUrl}\nDescription: {serviceDescription}\n\nIssue Description:\n[Please describe your issue here]\n\nSystem Information:\n- Browser: {browserInfo}\n- Hostname: {hostname}\n- Date/Time: {timestamp}\n- User: {userName}\n\nAdditional Information:\n[Any other relevant details]\n\nThank you for your assistance.\n\nBest regards,\n{userName}",
+            "emailSubjectTemplate": "Help Request: {serviceName}"
+        }
+    },
+    "categories": [
+        {
+            "name": "Productivity Suite",
+            "id": "productivity-suite",
+            "color": "#4285F4",
+            "description": "Essential tools for workflow management",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "Google Workspace",
+                    "url": "https://workspace.google.com/",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "help",
+                    "tags": ["docs", "email", "collaboration"],
+                    "description": "Cloud-based productivity suite"
+                },
+                {
+                    "name": "Microsoft 365",
+                    "url": "https://www.microsoft.com/microsoft-365",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "split-help",
+                    "tags": ["office", "cloud", "productivity"],
+                    "description": "Office applications and cloud services"
+                },
+                {
+                    "name": "Microsoft Word",
+                    "url": "app://microsoft-word",
+                    "logo": "",
+                    "type": "desktop",
+                    "supportType": "help",
+                    "tags": ["documents", "writing", "office"],
+                    "description": "Word processing application"
+                },
+                {
+                    "name": "Microsoft Excel",
+                    "url": "app://microsoft-excel",
+                    "logo": "",
+                    "type": "desktop",
+                    "supportType": "split-help",
+                    "tags": ["spreadsheets", "data", "office"],
+                    "description": "Spreadsheet application"
+                },
+                {
+                    "name": "Adobe Photoshop",
+                    "url": "app://adobe-photoshop",
+                    "logo": "",
+                    "type": "desktop",
+                    "supportType": "approval-process",
+                    "approvalInfo": {
+                        "approver": "Creative Software Manager",
+                        "requirements": ["Creative license justification", "Manager approval", "Training completion"],
+                        "process": "Submit request with creative project details and manager approval",
+                        "estimatedTime": "3-5 business days"
+                    },
+                    "tags": ["image-editing", "creative", "design"],
+                    "description": "Professional image editing software"
+                },
+                {
+                    "name": "Trello",
+                    "url": "https://trello.com/",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "help",
+                    "tags": ["kanban", "tasks", "management"],
+                    "description": "Visual project management tool"
+                },
+                {
+                    "name": "Notion",
+                    "url": "https://www.notion.so/",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "help",
+                    "tags": ["wiki", "notes", "database"],
+                    "description": "All-in-one workspace platform"
+                },
+                {
+                    "name": "Asana",
+                    "url": "https://asana.com/",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "help",
+                    "tags": ["projects", "tasks", "teams"],
+                    "description": "Team task management solution"
+                },
+                {
+                    "name": "Todoist",
+                    "url": "https://todoist.com/",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "help",
+                    "tags": ["tasks", "reminders", "gtd"],
+                    "description": "Personal task manager"
+                },
+                {
+                    "name": "Evernote",
+                    "url": "https://evernote.com/",
+                    "logo": "",
+                    "type": "web",
+                    "supportType": "help",
+                    "tags": ["notes", "organization", "sync"],
+                    "description": "Note-taking and organization"
+                }
+            ]
+        },
+        {
+            "name": "Development Tools",
+            "id": "development-tools",
+            "color": "#24292e",
+            "description": "Coding and deployment resources",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com/",
+                    "logo": "",
+                    "supportType": "split-help",
+                    "tags": ["git", "code", "version-control"],
+                    "description": "Code hosting and collaboration"
+                },
+                {
+                    "name": "GitLab",
+                    "url": "https://gitlab.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["ci-cd", "devops", "repository"],
+                    "description": "Complete DevOps platform"
+                },
+                {
+                    "name": "Stack Overflow",
+                    "url": "https://stackoverflow.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["q&a", "coding", "help"],
+                    "description": "Developer Q&A community"
+                },
+                {
+                    "name": "VS Code Docs",
+                    "url": "https://code.visualstudio.com/docs",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["editor", "docs", "extension"],
+                    "description": "Visual Studio Code documentation"
+                },
+                {
+                    "name": "Docker Hub",
+                    "url": "https://hub.docker.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["containers", "images", "registry"],
+                    "description": "Container image repository"
+                },
+                {
+                    "name": "Postman",
+                    "url": "https://www.postman.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["api", "testing", "rest"],
+                    "description": "API development environment"
+                },
+                {
+                    "name": "AWS Console",
+                    "url": "https://aws.amazon.com/console/",
+                    "logo": "",
+                    "supportType": "approval-process",
+                    "approvalInfo": {
+                        "approver": "Cloud Infrastructure Team Lead",
+                        "requirements": ["Project details", "Resource requirements", "Cost justification", "Manager approval"],
+                        "process": "Requires approval from both manager and cloud team for AWS access",
+                        "estimatedTime": "5-7 business days"
+                    },
+                    "tags": ["cloud", "services", "hosting"],
+                    "description": "Amazon Web Services dashboard"
+                },
+                {
+                    "name": "Canva",
+                    "url": "https://www.canva.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["templates", "graphics", "social"],
+                    "description": "Graphic design platform"
+                }
+            ]
+        },
+        {
+            "name": "Cloud Storage",
+            "id": "cloud-storage",
+            "color": "#0F9D58",
+            "description": "File storage and sharing services",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "Google Drive",
+                    "url": "https://drive.google.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["storage", "docs", "sharing"],
+                    "description": "Cloud file storage and sync"
+                },
+                {
+                    "name": "Dropbox",
+                    "url": "https://www.dropbox.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["files", "backup", "share"],
+                    "description": "File hosting service"
+                },
+                {
+                    "name": "OneDrive",
+                    "url": "https://onedrive.live.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["microsoft", "storage", "office"],
+                    "description": "Microsoft cloud storage"
+                },
+                {
+                    "name": "Box",
+                    "url": "https://www.box.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["enterprise", "secure", "collaboration"],
+                    "description": "Cloud content management"
+                },
+                {
+                    "name": "iCloud",
+                    "url": "https://www.icloud.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["apple", "sync", "backup"],
+                    "description": "Apple cloud services"
+                },
+                {
+                    "name": "pCloud",
+                    "url": "https://www.pcloud.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["secure", "encrypted", "lifetime"],
+                    "description": "European cloud storage"
+                },
+                {
+                    "name": "Mega",
+                    "url": "https://mega.nz/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["encryption", "large-files", "secure"],
+                    "description": "End-to-end encrypted storage"
+                }
+            ]
+        },
+        {
+            "name": "Design Resources",
+            "id": "design-resources",
+            "color": "#FF3E00",
+            "description": "Creative tools and assets",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "Figma",
+                    "url": "https://www.figma.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["ui", "ux", "prototyping"],
+                    "description": "Collaborative interface design"
+                },
+                {
+                    "name": "Adobe Creative Cloud",
+                    "url": "https://www.adobe.com/creativecloud.html",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["photoshop", "illustrator", "premiere"],
+                    "description": "Professional creative tools"
+                },
+                {
+                    "name": "Dribbble",
+                    "url": "https://dribbble.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["inspiration", "portfolio", "designers"],
+                    "description": "Designer community showcase"
+                },
+                {
+                    "name": "Behance",
+                    "url": "https://www.behance.net/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["portfolio", "creative", "showcase"],
+                    "description": "Creative work portfolio platform"
+                },
+                {
+                    "name": "Unsplash",
+                    "url": "https://unsplash.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["photos", "free", "stock"],
+                    "description": "High-quality free photos"
+                },
+                {
+                    "name": "Font Awesome",
+                    "url": "https://fontawesome.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["icons", "fonts", "svg"],
+                    "description": "Icon library and toolkit"
+                },
+                {
+                    "name": "Tableau",
+                    "url": "https://www.tableau.com/",
+                    "logo": "",
+                    "supportType": "split-help",
+                    "tags": ["bi", "visualization", "dashboards"],
+                    "description": "Business intelligence platform"
+                }
+            ]
+        },
+        {
+            "name": "Communication",
+            "id": "communication",
+            "color": "#611f69",
+            "description": "Team messaging and conferencing",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "Slack",
+                    "url": "https://slack.com/",
+                    "logo": "",
+                    "supportType": "split-help",
+                    "tags": ["teams", "chat", "channels"],
+                    "description": "Business communication platform"
+                },
+                {
+                    "name": "Microsoft Teams",
+                    "url": "https://www.microsoft.com/microsoft-teams",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["office", "meetings", "collab"],
+                    "description": "Office integrated collaboration"
+                },
+                {
+                    "name": "Zoom",
+                    "url": "https://zoom.us/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["video", "conferencing", "webinar"],
+                    "description": "Video communications platform"
+                },
+                {
+                    "name": "Google Meet",
+                    "url": "https://meet.google.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["video", "conference", "g-suite"],
+                    "description": "Google video meeting solution"
+                },
+                {
+                    "name": "Discord",
+                    "url": "https://discord.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["voice", "chat", "communities"],
+                    "description": "Voice and text communication"
+                },
+                {
+                    "name": "Webex",
+                    "url": "https://www.webex.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["cisco", "meetings", "calling"],
+                    "description": "Cisco collaboration suite"
+                },
+                {
+                    "name": "Signal",
+                    "url": "https://signal.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["secure", "private", "messaging"],
+                    "description": "Encrypted private messaging"
+                },
+                {
+                    "name": "LastPass",
+                    "url": "https://www.lastpass.com/",
+                    "logo": "",
+                    "supportType": "approval-process",
+                    "approvalInfo": {
+                        "approver": "IT Security Manager",
+                        "requirements": ["Business justification", "Manager approval", "Security training completion"],
+                        "process": "Submit request with business case explaining need for password manager access",
+                        "estimatedTime": "2-3 business days"
+                    },
+                    "tags": ["passwords", "manager", "security"],
+                    "description": "Password management solution"
+                }
+            ]
+        },
+        {
+            "name": "Learning & Docs",
+            "id": "learning-docs",
+            "color": "#0056D2",
+            "description": "Technical references and courses",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "MDN Web Docs",
+                    "url": "https://developer.mozilla.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["web", "reference", "standards"],
+                    "description": "Web technology documentation"
+                },
+                {
+                    "name": "W3Schools",
+                    "url": "https://www.w3schools.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["tutorials", "html", "css"],
+                    "description": "Web development tutorials"
+                },
+                {
+                    "name": "Stack Overflow",
+                    "url": "https://stackoverflow.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["q&a", "coding", "help"],
+                    "description": "Developer Q&A community"
+                },
+                {
+                    "name": "freeCodeCamp",
+                    "url": "https://www.freecodecamp.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["courses", "certification", "coding"],
+                    "description": "Coding curriculum and practice"
+                },
+                {
+                    "name": "Coursera",
+                    "url": "https://www.coursera.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["courses", "degrees", "online"],
+                    "description": "Online courses from universities"
+                },
+                {
+                    "name": "Udemy",
+                    "url": "https://www.udemy.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["courses", "video", "skills"],
+                    "description": "Online learning marketplace"
+                },
+                {
+                    "name": "Khan Academy",
+                    "url": "https://www.khanacademy.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["free", "education", "math"],
+                    "description": "Free educational resources"
+                }
+            ]
+        },
+        {
+            "name": "News & Insights",
+            "id": "news-insights",
+            "color": "#FF4D00",
+            "description": "Tech news and industry updates",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "Hacker News",
+                    "url": "https://news.ycombinator.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["tech", "startups", "programming"],
+                    "description": "Tech entrepreneur community"
+                },
+                {
+                    "name": "TechCrunch",
+                    "url": "https://techcrunch.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["startups", "vc", "tech-news"],
+                    "description": "Technology industry news"
+                },
+                {
+                    "name": "Ars Technica",
+                    "url": "https://arstechnica.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["science", "policy", "tech"],
+                    "description": "In-depth technology analysis"
+                },
+                {
+                    "name": "The Verge",
+                    "url": "https://www.theverge.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["gadgets", "reviews", "culture"],
+                    "description": "Technology and media coverage"
+                },
+                {
+                    "name": "Reddit (r/programming)",
+                    "url": "https://www.reddit.com/r/programming/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["community", "discussion", "news"],
+                    "description": "Programming discussions"
+                },
+                {
+                    "name": "Product Hunt",
+                    "url": "https://www.producthunt.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["products", "launches", "tools"],
+                    "description": "New product discoveries"
+                },
+                {
+                    "name": "Bloomberg Tech",
+                    "url": "https://www.bloomberg.com/technology",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["business", "finance", "markets"],
+                    "description": "Business and tech news"
+                },
+                {
+                    "name": "Malwarebytes",
+                    "url": "https://www.malwarebytes.com/",
+                    "logo": "",
+                    "supportType": "approval-process",
+                    "approvalInfo": {
+                        "approver": "IT Security Team",
+                        "requirements": ["Incident report", "Business justification", "Manager approval"],
+                        "process": "Security tool access requires approval due to administrative privileges",
+                        "estimatedTime": "1-2 business days"
+                    },
+                    "tags": ["antivirus", "malware", "protection"],
+                    "description": "Malware detection and removal"
+                }
+            ]
+        },
+        {
+            "name": "Security & IT",
+            "id": "security-it",
+            "color": "#000000",
+            "description": "Cybersecurity and system tools",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "1Password",
+                    "url": "https://1password.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["passwords", "secure", "vault"],
+                    "description": "Enterprise password manager"
+                },
+                {
+                    "name": "VirusTotal",
+                    "url": "https://www.virustotal.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["scanner", "security", "analysis"],
+                    "description": "File and URL scanner"
+                },
+                {
+                    "name": "Let's Encrypt",
+                    "url": "https://letsencrypt.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["ssl", "tls", "certificates"],
+                    "description": "Free SSL/TLS certificates"
+                },
+                {
+                    "name": "WireGuard",
+                    "url": "https://www.wireguard.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["vpn", "secure", "networking"],
+                    "description": "Modern VPN protocol"
+                },
+                {
+                    "name": "Have I Been Pwned",
+                    "url": "https://haveibeenpwned.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["security", "breach", "monitoring"],
+                    "description": "Data breach monitoring"
+                },
+                {
+                    "name": "DuckDuckGo",
+                    "url": "https://duckduckgo.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["search", "privacy", "tracking"],
+                    "description": "Privacy-focused search engine"
+                }
+            ]
+        },
+        {
+            "name": "Data & Analytics",
+            "id": "data-analytics",
+            "color": "#00B0FF",
+            "description": "Data processing and visualization",
+            "collapsed": false,
+            "bookmarks": [
+                {
+                    "name": "Google Analytics",
+                    "url": "https://analytics.google.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["analytics", "tracking", "seo"],
+                    "description": "Web analytics service"
+                },
+                {
+                    "name": "Power BI",
+                    "url": "https://powerbi.microsoft.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["microsoft", "reports", "analytics"],
+                    "description": "Microsoft analytics service"
+                },
+                {
+                    "name": "Kaggle",
+                    "url": "https://www.kaggle.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["datasets", "competitions", "notebooks"],
+                    "description": "Data science community"
+                },
+                {
+                    "name": "Grafana",
+                    "url": "https://grafana.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["monitoring", "metrics", "dashboards"],
+                    "description": "Observability platform"
+                },
+                {
+                    "name": "RapidAPI",
+                    "url": "https://rapidapi.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["api", "marketplace", "integration"],
+                    "description": "API hub and marketplace"
+                },
+                {
+                    "name": "JSON Formatter",
+                    "url": "https://jsonformatter.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["json", "tools", "format"],
+                    "description": "JSON validation and formatting"
+                },
+                {
+                    "name": "OpenRefine",
+                    "url": "https://openrefine.org/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["data", "cleaning", "transformation"],
+                    "description": "Data cleaning tool"
+                }
+            ]
+        },
+        {
+            "name": "Utilities",
+            "id": "utilities",
+            "color": "#FF6D00",
+            "description": "Daily productivity tools",
+            "collapsed": true,
+            "bookmarks": [
+                {
+                    "name": "DeepL Translate",
+                    "url": "https://www.deepl.com/translator",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["translation", "ai", "languages"],
+                    "description": "AI-powered translation service"
+                },
+                {
+                    "name": "Grammarly",
+                    "url": "https://www.grammarly.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["writing", "grammar", "proofreading"],
+                    "description": "Writing assistant"
+                },
+                {
+                    "name": "Smallpdf",
+                    "url": "https://smallpdf.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["pdf", "tools", "conversion"],
+                    "description": "PDF processing tools"
+                },
+                {
+                    "name": "Jira",
+                    "url": "https://www.atlassian.com/software/jira",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["issues", "projects", "tracking"],
+                    "description": "Project management software"
+                },
+                {
+                    "name": "IFTTT",
+                    "url": "https://ifttt.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["automation", "applets", "integration"],
+                    "description": "Applet-based automation"
+                },
+                {
+                    "name": "World Time Buddy",
+                    "url": "https://www.worldtimebuddy.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["time", "zones", "converter"],
+                    "description": "Time zone converter"
+                },
+                {
+                    "name": "Remove.bg",
+                    "url": "https://www.remove.bg/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["background", "remove", "images"],
+                    "description": "Background removal tool"
+                },
+                {
+                    "name": "TinyPNG",
+                    "url": "https://tinypng.com/",
+                    "logo": "",
+                    "supportType": "help",
+                    "tags": ["compress", "images", "optimization"],
+                    "description": "Image compression service"
+                }
+            ]
+        }
+    ]
 });

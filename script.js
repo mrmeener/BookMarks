@@ -939,19 +939,29 @@ class BookmarkApp {
     }
 
     createBookmarkCard(bookmark) {
+        const isDesktopApp = bookmark.type === 'desktop';
         const logoSrc = bookmark.logo || this.getFaviconUrl(bookmark.url);
         const isFavorited = this.favorites.has(bookmark.url);
         const tags = bookmark.tags ? bookmark.tags.map(tag => 
             `<span class="bookmark-tag clickable" onclick="bookmarkApp.handleTagClick('${tag}', event)">${tag}</span>`
         ).join('') : '';
 
+        // For desktop apps, show info modal instead of trying to open URL
+        const cardAction = isDesktopApp 
+            ? `onclick="bookmarkApp.showDesktopAppInfo('${bookmark.name.replace(/'/g, "\\'")}', '${bookmark.url}', '${bookmark.description.replace(/'/g, "\\'")}', event)"` 
+            : `href="${bookmark.url}" target="_blank" rel="noopener noreferrer"`;
+
+        const cardClass = isDesktopApp ? 'bookmark-card desktop-app-card' : 'bookmark-card';
+        const typeIndicator = '';
+
         return `
-            <a href="${bookmark.url}" class="bookmark-card" target="_blank" rel="noopener noreferrer">
+            <a ${cardAction} class="${cardClass}">
                 <div class="bookmark-star ${isFavorited ? 'favorited' : ''}" 
                      data-url="${bookmark.url}"
                      onclick="bookmarkApp.toggleFavorite('${bookmark.url}', event)">
                     ${isFavorited ? '⭐' : '☆'}
                 </div>
+                ${typeIndicator}
                 <div class="bookmark-header">
                     <img src="${logoSrc}" alt="${bookmark.name} logo" class="bookmark-logo" 
                          onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ4IiBoZWlnaHQ9IjQ4IiByeD0iOCIgZmlsbD0iI0Y4RjlGQSIvPgo8cGF0aCBkPSJNMjQgMTJDMTcuMzczIDEyIDEyIDE3LjM3MyAxMiAyNEMxMiAzMC42MjcgMTcuMzczIDM2IDI0IDM2QzMwLjYyNyAzNiAzNiAzMC42MjcgMzYgMjRDMzYgMTcuMzczIDMwLjYyNyAxMiAyNCAxMlpNMjQgMzNDMTkuMDMgMzMgMTUgMjguOTcgMTUgMjRDMTUgMTkuMDMgMTkuMDMgMTUgMjQgMTVDMjguOTcgMTUgMzMgMTkuMDMgMzMgMjRDMzMgMjguOTcgMjguOTcgMzMgMjQgMzNaIiBmaWxsPSIjNjA1RTVDIi8+CjxwYXRoIGQ9Ik0yNCAyMUMyMi4zNDMgMjEgMjEgMjIuMzQzIDIxIDI0QzIxIDI1LjY1NyAyMi4zNDMgMjcgMjQgMjdDMjUuNjU3IDI3IDI3IDI1LjY1NyAyNyAyNEMyNyAAMi4zNDMgMjUuNjU3IDIxIDI0IDIxWiIgZmlsbD0iIzYwNUU1QyIvPgo8L3N2Zz4K'">
@@ -964,7 +974,7 @@ class BookmarkApp {
                                 ❓
                             </div>
                         </div>
-                        <div class="bookmark-url">${this.formatUrl(bookmark.url)}</div>
+                        <div class="bookmark-url">${isDesktopApp ? 'Desktop Application' : this.formatUrl(bookmark.url)}</div>
                     </div>
                 </div>
                 <div class="bookmark-description">${bookmark.description}</div>
@@ -1030,6 +1040,12 @@ class BookmarkApp {
             this.filterFavoritesSection(favoritesSection);
         }
 
+        // Filter recently visited section
+        const recentVisitsSection = document.querySelector('.recent-visits-section');
+        if (recentVisitsSection) {
+            this.filterRecentVisitsSection(recentVisitsSection);
+        }
+
         // Filter regular categories
         const categories = document.querySelectorAll('.category-section');
         categories.forEach(categoryElement => {
@@ -1066,6 +1082,33 @@ class BookmarkApp {
                 badge.textContent = (this.searchTerm || this.activeTags.size > 0) ? visibleBookmarks : category.bookmarks.length;
             }
         });
+    }
+    filterRecentVisitsSection(recentVisitsSection) {
+        let visibleBookmarks = 0;
+        const bookmarkCards = recentVisitsSection.querySelectorAll('.bookmark-card');
+        
+        bookmarkCards.forEach((card, index) => {
+            const visit = this.recentVisits[index];
+            if (visit && this.matchesSearchAndTags(visit)) {
+                card.classList.remove('hidden');
+                visibleBookmarks++;
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+
+        // Hide recent visits section if no bookmarks match
+        if (visibleBookmarks === 0 && (this.searchTerm || this.activeTags.size > 0)) {
+            recentVisitsSection.classList.add('hidden');
+        } else {
+            recentVisitsSection.classList.remove('hidden');
+        }
+
+        // Update badge count
+        const badge = recentVisitsSection.querySelector('.recent-visits-badge');
+        if (badge) {
+            badge.textContent = (this.searchTerm || this.activeTags.size > 0) ? visibleBookmarks : this.recentVisits.length;
+        }
     }
 
     filterFavoritesSection(favoritesSection) {
@@ -1395,18 +1438,21 @@ class BookmarkApp {
         const urlInput = document.getElementById('bookmarkUrl');
         const categorySelect = document.getElementById('bookmarkCategory');
         const tagsInput = document.getElementById('bookmarkTags');
+        const typeSelect = document.getElementById('bookmarkType');
         
         // Remove existing event listeners
         form.removeEventListener('submit', this.handleAddBookmarkSubmit);
         urlInput.removeEventListener('input', this.handleUrlInput);
         categorySelect.removeEventListener('change', this.handleCategoryChange);
         tagsInput.removeEventListener('input', this.handleTagsInput);
+        typeSelect.removeEventListener('change', this.handleTypeChange);
         
         // Add event listeners
         form.addEventListener('submit', (e) => this.handleAddBookmarkSubmit(e));
         urlInput.addEventListener('input', (e) => this.handleUrlInput(e));
         categorySelect.addEventListener('change', (e) => this.handleCategoryChange(e));
         tagsInput.addEventListener('input', (e) => this.handleTagsInput(e));
+        typeSelect.addEventListener('change', (e) => this.handleTypeChange(e));
     }
 
     handleAddBookmarkSubmit(e) {
@@ -1419,7 +1465,9 @@ class BookmarkApp {
             description: formData.get('description').trim(),
             category: formData.get('category'),
             tags: formData.get('tags').split(',').map(tag => tag.trim()).filter(tag => tag),
-            logo: formData.get('logo').trim()
+            logo: formData.get('logo').trim(),
+            helpType: formData.get('helpType') || 'help',
+            type: formData.get('type') || 'web'
         };
         
         // Validate form data
@@ -1543,6 +1591,8 @@ class BookmarkApp {
             description: bookmarkData.description || '',
             logo: bookmarkData.logo || '',
             tags: bookmarkData.tags || [],
+            supportType: bookmarkData.helpType || 'help',
+            type: bookmarkData.type || 'web',
             isUserCreated: true,
             dateAdded: Date.now()
         };
@@ -1611,7 +1661,16 @@ class BookmarkApp {
     mergeUserBookmarks() {
         if (!this.bookmarksData || !this.bookmarksData.categories) return;
         
-        // Add user bookmarks to existing categories
+        // First, remove any previously added user bookmarks to avoid duplicates
+        this.bookmarksData.categories.forEach(category => {
+            // Remove user-created bookmarks from existing categories
+            category.bookmarks = category.bookmarks.filter(bookmark => !bookmark.isUserCreated);
+        });
+        
+        // Remove user-created categories
+        this.bookmarksData.categories = this.bookmarksData.categories.filter(category => !category.isUserCreated);
+        
+        // Now add user bookmarks to existing categories
         this.bookmarksData.categories.forEach(category => {
             const userBookmarks = this.userBookmarks.bookmarksInExistingCategories[category.id];
             if (userBookmarks && userBookmarks.length > 0) {
@@ -1701,6 +1760,58 @@ class BookmarkApp {
             suggestion.onclick = () => this.addTagSuggestion(tag);
             suggestions.appendChild(suggestion);
         });
+    }
+
+    handleTypeChange(e) {
+        const urlInput = document.getElementById('bookmarkUrl');
+        const urlLabel = document.getElementById('urlLabel');
+        const urlPreview = document.querySelector('.url-preview');
+        
+        if (e.target.value === 'desktop') {
+            // Change to desktop application mode
+            urlLabel.textContent = 'Application Name/ID *';
+            urlInput.type = 'text';
+            urlInput.placeholder = 'e.g., Microsoft Word, Adobe Photoshop, app://microsoft-word';
+            urlInput.removeAttribute('pattern');
+            
+            // Hide URL preview for desktop apps
+            if (urlPreview) {
+                urlPreview.style.display = 'none';
+            }
+            
+            // Clear URL validation
+            urlInput.setCustomValidity('');
+        } else {
+            // Change to web bookmark mode
+            urlLabel.textContent = 'URL *';
+            urlInput.type = 'url';
+            urlInput.placeholder = 'https://example.com';
+            
+            // Show URL preview for web bookmarks
+            if (urlPreview) {
+                urlPreview.style.display = 'block';
+            }
+        }
+        
+        // Clear the input when switching types
+        urlInput.value = '';
+        
+        // Clear any existing validation messages
+        this.clearFieldValidation('bookmarkUrl');
+    }
+
+    clearFieldValidation(fieldId) {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.style.borderColor = '';
+            field.setCustomValidity('');
+            
+            // Remove error message
+            const existingError = field.parentNode.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
     }
 
     addTagSuggestion(tag) {
@@ -1830,9 +1941,6 @@ class BookmarkApp {
         // Hide selective options
         document.getElementById('selectiveOptions').style.display = 'none';
         document.getElementById('exportPreview').style.display = 'none';
-        
-        // Clear notes
-        document.getElementById('exportNotes').value = '';
     }
 
     setupExportForm() {
@@ -1842,9 +1950,8 @@ class BookmarkApp {
             radio.addEventListener('change', (e) => this.handleExportTypeChange(e.target.value));
         });
         
-        // Update preview when filename or notes change
+        // Update preview when filename changes
         document.getElementById('exportFileName').addEventListener('input', () => this.updateExportPreview());
-        document.getElementById('exportNotes').addEventListener('input', () => this.updateExportPreview());
         
         // Initial preview update
         this.updateExportPreview();
@@ -2052,11 +2159,11 @@ class BookmarkApp {
             }
         };
         
-        // Add custom notes if provided
-        const notes = document.getElementById('exportNotes').value.trim();
-        if (notes) {
-            exportData.exportInfo.customNotes = notes;
-        }
+        // Add custom notes if provided (exportNotes element doesn't exist, so skip this)
+        // const notes = document.getElementById('exportNotes').value.trim();
+        // if (notes) {
+        //     exportData.exportInfo.customNotes = notes;
+        // }
         
         // Add user bookmarks based on export type
         if (exportType === 'full' || exportType === 'bookmarks') {
@@ -3100,50 +3207,534 @@ class BookmarkApp {
 
     // Help Type Dispatcher
     dispatchHelpByType(bookmark) {
-        const supportType = bookmark.supportType || 'popup'; // Default to popup if not specified
+        const supportType = bookmark.supportType || 'help'; // Default to help if not specified
         
         switch (supportType) {
+            case 'help':
+                this.showHelpModal(bookmark);
+                break;
+            case 'split-help':
+                this.showSplitHelpModal(bookmark);
+                break;
+            case 'approval-process':
+                this.showApprovalProcessModal(bookmark);
+                break;
+            // Legacy support for old types
             case 'ticket':
-                this.handleTicketSupport(bookmark);
+                this.showSplitHelpModal(bookmark);
                 break;
             case 'popup':
-                this.handlePopupHelp(bookmark);
+                this.showHelpModal(bookmark);
                 break;
             case 'none':
-                this.handleNoSupport(bookmark);
+                this.showHelpModal(bookmark);
                 break;
             default:
-                // Unknown support type, fall back to popup
-                console.warn(`Unknown support type: ${supportType}, falling back to popup`);
-                this.handlePopupHelp(bookmark);
+                // Unknown support type, fall back to help
+                console.warn(`Unknown support type: ${supportType}, falling back to help`);
+                this.showHelpModal(bookmark);
         }
     }
 
-    // Handle ticket-based support
-    handleTicketSupport(bookmark) {
-        if (bookmark.helpInfo) {
-            // Rich help information available - show comprehensive modal
-            this.showToolHelpModal(bookmark);
+    // New Help Modal Types
+
+    // 1. Help Modal (Self-Service Popup)
+    showHelpModal(bookmark) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.style.display = 'flex';
+        
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">❓ ${bookmark.name} - Help</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+                </div>
+                <div class="modal-form">
+                    <div class="form-group">
+                        <h4>📋 Tool Information:</h4>
+                        <p><strong>Name:</strong> ${bookmark.name}</p>
+                        <p><strong>URL:</strong> <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">${bookmark.url}</a></p>
+                        <p><strong>Description:</strong> ${bookmark.description}</p>
+                        ${bookmark.tags && bookmark.tags.length > 0 ? `<p><strong>Tags:</strong> ${bookmark.tags.join(', ')}</p>` : ''}
+                    </div>
+                    
+                    <div class="form-group">
+                        <h4>🛠️ Self-Service Help:</h4>
+                        <p>This is a self-service tool. For assistance, you can:</p>
+                        <ul>
+                            <li>📖 Check the tool's built-in help or documentation</li>
+                            <li>🌐 Visit the tool's website for user guides</li>
+                            <li>📧 Contact IT support if you encounter technical issues</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h4>📞 Need More Help?</h4>
+                        <p>If you need additional assistance, contact IT support with details about your specific issue.</p>
+                        <div class="action-buttons-group">
+                            <button class="btn-primary" onclick="window.open('${bookmark.url}', '_blank')">🌐 Open Tool</button>
+                            <button class="btn-secondary" onclick="bookmarkApp.showGenericHelpEmail('${bookmark.name}', '${bookmark.url}', '${bookmark.description}'); this.closest('.modal-overlay').remove();">📧 Contact IT</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+                        <button type="button" class="btn-primary" onclick="window.open('${bookmark.url}', '_blank')">🌐 Open Tool</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
+
+    // 2. Split Help Modal (2 Tabs: Self-Service + Support Ticket)
+    showSplitHelpModal(bookmark) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.style.display = 'flex';
+        
+        modal.innerHTML = `
+            <div class="modal-content knowledge-base-modal">
+                <div class="modal-header">
+                    <h2 class="modal-title">🛠️ ${bookmark.name} - Help & Support</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="knowledge-base-tabs">
+                        <button class="kb-tab-btn active" onclick="bookmarkApp.showHelpTab(this, 'self-service')">🚀 Self Service</button>
+                        <button class="kb-tab-btn" onclick="bookmarkApp.showHelpTab(this, 'support-ticket')">🎫 Support Ticket</button>
+                    </div>
+                    
+                    <div class="kb-tab-content split-help-tab-content">
+                        <!-- Self Service Tab -->
+                        <div id="help-self-service" class="kb-tab-panel active">
+                            <div class="form-group">
+                                <div class="split-help-tool-info">
+                                    <h4>📋 Tool Information</h4>
+                                    <p><strong>Name:</strong> ${bookmark.name}</p>
+                                    <p><strong>URL:</strong> <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">${bookmark.url}</a></p>
+                                    <p><strong>Description:</strong> ${bookmark.description}</p>
+                                    ${bookmark.tags && bookmark.tags.length > 0 ? `<p><strong>Tags:</strong> ${bookmark.tags.join(', ')}</p>` : ''}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>🚀 Self-Service Options</h4>
+                                <p>Try these resources first to resolve your issue quickly and independently:</p>
+                                <div class="self-service-options">
+                                    <div class="service-option">
+                                        <h5>🌐 Tool Website</h5>
+                                        <p>Visit the official website for comprehensive documentation, tutorials, and user guides.</p>
+                                        <button class="btn-primary" onclick="window.open('${bookmark.url}', '_blank')">🌐 Open Website</button>
+                                    </div>
+                                    <div class="service-option">
+                                        <h5>📚 Local Documentation</h5>
+                                        <p>Browse our curated documentation library and quick reference guides for immediate assistance.</p>
+                                        <button class="btn-primary" onclick="window.open('./Docs/', '_blank')">📚 Open Docs</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="split-help-tips">
+                                    <h4>💡 Quick Tips</h4>
+                                    <ul>
+                                        <li>Check the tool's built-in help section or FAQ first</li>
+                                        <li>Look for troubleshooting guides in the documentation</li>
+                                        <li>Search for your specific issue or error message online</li>
+                                        <li>Check if there are video tutorials or training materials available</li>
+                                        <li>Try clearing your browser cache if experiencing loading issues</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Support Ticket Tab -->
+                        <div id="help-support-ticket" class="kb-tab-panel">
+                            <div class="form-group">
+                                <h4>🎫 Create Support Ticket</h4>
+                                <p>If self-service options don't resolve your issue, create a support ticket for personalized assistance from our IT team.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>📧 Support Request Email</h4>
+                                <p>Use this pre-filled template to ensure you provide all necessary information:</p>
+                                <div class="support-email-template">
+                                    <div class="email-template-header">
+                                        <strong>To:</strong> ${this.getDefaultSupportEmail()}<br>
+                                        <strong>Subject:</strong> Support Request - ${bookmark.name}
+                                    </div>
+                                    <div class="email-template-body">
+                                        <strong>Email Body:</strong>
+                                        <textarea readonly class="support-email-body">${this.generateSplitHelpSupportTemplate(bookmark)}</textarea>
+                                    </div>
+                                    <div class="email-template-actions">
+                                        <button class="btn-primary" onclick="bookmarkApp.sendSplitHelpSupportEmail('${bookmark.name}', '${bookmark.url}')">📧 Create Support Ticket</button>
+                                        <button class="btn-secondary" onclick="bookmarkApp.copySplitHelpSupportTemplate('${bookmark.name}')">📋 Copy Template</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="split-help-tips">
+                                    <h4>📋 Before Creating a Ticket</h4>
+                                    <ul>
+                                        <li>Ensure you've tried the self-service options above</li>
+                                        <li>Check if colleagues in your team have encountered the same issue</li>
+                                        <li>Gather any error messages, screenshots, or relevant details</li>
+                                        <li>Note exactly what you were trying to accomplish when the issue occurred</li>
+                                        <li>Include your browser type and version if experiencing web-based issues</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+                        <button type="button" class="btn-primary" onclick="window.open('${bookmark.url}', '_blank')">🌐 Open Tool</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
+
+    // 3. Approval Process Modal (2 Tabs: Approval Info + Request Ticket)
+    showApprovalProcessModal(bookmark) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.style.display = 'flex';
+        
+        const approvalInfo = bookmark.approvalInfo || {
+            approver: 'IT Manager',
+            requirements: ['Business justification', 'Manager approval'],
+            process: 'Submit request with business case and manager approval',
+            estimatedTime: '3-5 business days'
+        };
+        
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🔒 ${bookmark.name} - Approval Required</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="knowledge-base-tabs">
+                        <button class="kb-tab-btn active" onclick="bookmarkApp.showHelpTab(this, 'approval-info')">📋 Approval Information</button>
+                        <button class="kb-tab-btn" onclick="bookmarkApp.showHelpTab(this, 'request-ticket')">🎫 Request Access</button>
+                    </div>
+                    
+                    <div class="kb-tab-content">
+                        <!-- Approval Information Tab -->
+                        <div id="help-approval-info" class="kb-tab-panel active">
+                            <div class="form-group">
+                                <h4>📋 Tool Information:</h4>
+                                <p><strong>Name:</strong> ${bookmark.name}</p>
+                                <p><strong>URL:</strong> <a href="${bookmark.url}" target="_blank" rel="noopener noreferrer">${bookmark.url}</a></p>
+                                <p><strong>Description:</strong> ${bookmark.description}</p>
+                                ${bookmark.tags && bookmark.tags.length > 0 ? `<p><strong>Tags:</strong> ${bookmark.tags.join(', ')}</p>` : ''}
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>🔒 Approval Required</h4>
+                                <div style="background-color: rgba(255, 193, 7, 0.1); border: 1px solid #ffc107; border-radius: 6px; padding: 12px; color: #856404;">
+                                    <strong>⚠️ Access Restriction</strong><br>
+                                    This tool requires approval before access can be granted. Please review the requirements below.
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>👤 Approver:</h4>
+                                <p><strong>${approvalInfo.approver}</strong></p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>📋 Requirements:</h4>
+                                <ul>
+                                    ${approvalInfo.requirements.map(req => `<li>${req}</li>`).join('')}
+                                </ul>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>🔄 Process:</h4>
+                                <p>${approvalInfo.process}</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>⏱️ Estimated Time:</h4>
+                                <p>${approvalInfo.estimatedTime}</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>💡 Tips for Approval:</h4>
+                                <ul>
+                                    <li>Provide clear business justification</li>
+                                    <li>Include your manager in the request</li>
+                                    <li>Explain how this tool will benefit your work</li>
+                                    <li>Be specific about what access you need</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Request Ticket Tab -->
+                        <div id="help-request-ticket" class="kb-tab-panel">
+                            <div class="form-group">
+                                <h4>🎫 Request Access</h4>
+                                <p>Submit an access request for <strong>${bookmark.name}</strong>. Make sure to include all required information.</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>📧 Access Request Email</h4>
+                                <div class="support-email-template">
+                                    <div class="email-template-header">
+                                        <strong>To:</strong> ${this.getDefaultSupportEmail()}<br>
+                                        <strong>Subject:</strong> Access Request - ${bookmark.name}
+                                    </div>
+                                    <div class="email-template-body">
+                                        <strong>Email Body:</strong>
+                                        <textarea readonly class="support-email-body">${this.generateApprovalProcessTemplate(bookmark, approvalInfo)}</textarea>
+                                    </div>
+                                    <div class="email-template-actions">
+                                        <button class="btn-primary" onclick="bookmarkApp.sendApprovalProcessEmail('${bookmark.name}', '${bookmark.url}')">📧 Send Request</button>
+                                        <button class="btn-secondary" onclick="bookmarkApp.copyApprovalProcessTemplate('${bookmark.name}')">📋 Copy Template</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>👤 Manager CC (Required)</h4>
+                                <p>Your manager must be copied on approval requests:</p>
+                                <div class="manager-cc-input">
+                                    <input type="email" id="managerEmail" placeholder="manager@company.com" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                                    <small style="color: #666; margin-top: 4px; display: block;">Enter your manager's email address</small>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <h4>📋 What to Include:</h4>
+                                <ul>
+                                    <li><strong>Business Justification:</strong> Why you need this tool</li>
+                                    <li><strong>Use Case:</strong> How you plan to use it</li>
+                                    <li><strong>Duration:</strong> How long you need access</li>
+                                    <li><strong>Alternatives:</strong> Why other tools won't work</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+                        <div class="action-buttons-group">
+                            <button type="button" class="btn-primary" onclick="bookmarkApp.sendApprovalProcessEmailWithManager('${bookmark.name}', '${bookmark.url}')">🎫 Submit Request</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
+
+    // Helper functions for the new help system
+    generateSplitHelpSupportTemplate(bookmark) {
+        const browserInfo = this.getBrowserInfo();
+        const hostname = this.getHostname();
+        const timestamp = new Date().toLocaleString();
+        
+        return `Hello IT Support,
+
+I need assistance with ${bookmark.name} and have tried the self-service options.
+
+Tool Information:
+- Name: ${bookmark.name}
+- URL: ${bookmark.url}
+- Description: ${bookmark.description}
+
+Self-Service Attempts:
+☐ Checked the tool's built-in help
+☐ Visited the tool's website documentation
+☐ Reviewed local documentation
+☐ Searched for solutions online
+
+Issue Description:
+[Please describe your specific issue here]
+
+What I was trying to accomplish:
+[Describe your goal or task]
+
+Steps I've already tried:
+1. [First step you attempted]
+2. [Second step you attempted]
+3. [Third step you attempted]
+
+Error messages (if any):
+[Copy any error messages you received]
+
+System Information:
+- Computer Name: ${hostname}
+- Browser: ${browserInfo}
+- Date/Time: ${timestamp}
+- User: [Your Name]
+
+Additional Information:
+[Any other relevant details or screenshots]
+
+Thank you for your assistance.
+
+Best regards,
+[Your Name]
+[Your Email]
+[Your Department]`;
+    }
+
+    generateApprovalProcessTemplate(bookmark, approvalInfo) {
+        const browserInfo = this.getBrowserInfo();
+        const hostname = this.getHostname();
+        const timestamp = new Date().toLocaleString();
+        
+        return `Hello IT Support,
+
+I am requesting access to ${bookmark.name} and understand that approval is required.
+
+Tool Information:
+- Name: ${bookmark.name}
+- URL: ${bookmark.url}
+- Description: ${bookmark.description}
+
+Business Justification:
+[Please provide a detailed business justification for why you need access to this tool]
+
+Use Case:
+[Explain specifically how you plan to use this tool in your work]
+
+Duration of Access:
+[How long do you need access? Temporary project or ongoing work?]
+
+Manager Approval:
+- Manager Name: [Your Manager's Name]
+- Manager Email: [Manager's Email - will be CC'd]
+- Manager has been informed: [Yes/No]
+
+Project/Department Information:
+- Department: [Your Department]
+- Project Name: [If applicable]
+- Cost Center: [If applicable]
+
+Alternative Solutions Considered:
+[Explain why existing tools or alternatives won't meet your needs]
+
+Required Access Level:
+[Specify what level of access you need - read-only, full access, admin, etc.]
+
+System Information:
+- Computer Name: ${hostname}
+- Browser: ${browserInfo}
+- Date/Time: ${timestamp}
+- User: [Your Name]
+
+I understand that:
+- This request requires approval from ${approvalInfo.approver}
+- The estimated processing time is ${approvalInfo.estimatedTime}
+- I must comply with all company policies regarding tool usage
+
+Thank you for processing this request.
+
+Best regards,
+[Your Name]
+[Your Email]
+[Your Phone Number]
+[Your Department]`;
+    }
+
+    sendSplitHelpSupportEmail(toolName, toolUrl) {
+        const supportEmail = this.getDefaultSupportEmail();
+        const subject = `Support Request - ${toolName}`;
+        const bookmark = { name: toolName, url: toolUrl, description: `Support request for ${toolName}` };
+        const body = this.generateSplitHelpSupportTemplate(bookmark);
+        
+        const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    }
+
+    copySplitHelpSupportTemplate(toolName) {
+        const supportEmail = this.getDefaultSupportEmail();
+        const subject = `Support Request - ${toolName}`;
+        const bookmark = { name: toolName, url: '', description: `Support request for ${toolName}` };
+        const body = this.generateSplitHelpSupportTemplate(bookmark);
+        
+        const emailText = `To: ${supportEmail}\nSubject: ${subject}\n\n${body}`;
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(emailText).then(() => {
+                this.showSuccessMessage('Support template copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy to clipboard:', err);
+                this.fallbackCopyToClipboard(emailText);
+            });
         } else {
-            // Basic ticket support - show simplified ticket creation
-            this.showStepByStepTicketModal(bookmark);
+            this.fallbackCopyToClipboard(emailText);
         }
     }
 
-    // Handle popup help
-    handlePopupHelp(bookmark) {
-        if (bookmark.helpInfo) {
-            // Rich help information available - show comprehensive modal
-            this.showToolHelpModal(bookmark);
+    sendApprovalProcessEmail(toolName, toolUrl) {
+        const supportEmail = this.getDefaultSupportEmail();
+        const subject = `Access Request - ${toolName}`;
+        const bookmark = { name: toolName, url: toolUrl, description: `Access request for ${toolName}` };
+        const approvalInfo = { approver: 'IT Manager', requirements: ['Business justification'], process: 'Standard approval process', estimatedTime: '3-5 business days' };
+        const body = this.generateApprovalProcessTemplate(bookmark, approvalInfo);
+        
+        const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    }
+
+    sendApprovalProcessEmailWithManager(toolName, toolUrl) {
+        const managerEmail = document.getElementById('managerEmail')?.value.trim();
+        
+        if (!managerEmail) {
+            alert('Please enter your manager\'s email address before submitting the request.');
+            return;
+        }
+        
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(managerEmail)) {
+            alert('Please enter a valid email address for your manager.');
+            return;
+        }
+        
+        const supportEmail = this.getDefaultSupportEmail();
+        const subject = `Access Request - ${toolName}`;
+        const bookmark = { name: toolName, url: toolUrl, description: `Access request for ${toolName}` };
+        const approvalInfo = { approver: 'IT Manager', requirements: ['Business justification'], process: 'Standard approval process', estimatedTime: '3-5 business days' };
+        const body = this.generateApprovalProcessTemplate(bookmark, approvalInfo);
+        
+        const mailtoLink = `mailto:${supportEmail}?cc=${encodeURIComponent(managerEmail)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+    }
+
+    copyApprovalProcessTemplate(toolName) {
+        const supportEmail = this.getDefaultSupportEmail();
+        const subject = `Access Request - ${toolName}`;
+        const bookmark = { name: toolName, url: '', description: `Access request for ${toolName}` };
+        const approvalInfo = { approver: 'IT Manager', requirements: ['Business justification'], process: 'Standard approval process', estimatedTime: '3-5 business days' };
+        const body = this.generateApprovalProcessTemplate(bookmark, approvalInfo);
+        
+        const emailText = `To: ${supportEmail}\nSubject: ${subject}\n\n${body}`;
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(emailText).then(() => {
+                this.showSuccessMessage('Approval request template copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy to clipboard:', err);
+                this.fallbackCopyToClipboard(emailText);
+            });
         } else {
-            // Basic popup help - show simple information modal
-            this.showBasicHelpModal(bookmark);
+            this.fallbackCopyToClipboard(emailText);
         }
-    }
-
-    // Handle no support available
-    handleNoSupport(bookmark) {
-        this.showNoSupportModal(bookmark);
     }
 
     // Show step-by-step ticket modal for guided ticket creation
@@ -3331,9 +3922,8 @@ Error Messages (if any):
 [Copy any error messages you received]
 
 Steps to Reproduce:
-1. [First step]
-2. [Second step]
-3. [What happened]
+1. [What i tried]
+2. [What happened]
 
 System Information:
 - Computer Name/Hostname: ${hostname}
@@ -3720,6 +4310,130 @@ Best regards,
             this.showSuccessMessage('Could not copy to clipboard. Please copy manually.');
         }
         document.body.removeChild(textArea);
+    }
+
+    // Desktop Application Info Modal
+    showDesktopAppInfo(appName, appId, appDescription, event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        // Find the bookmark to get full details
+        const bookmark = this.findBookmarkByUrl(appId);
+        
+        const modal = document.createElement('div');
+        modal.className = 'modal-overlay';
+        modal.style.display = 'flex';
+        
+        modal.innerHTML = `
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">🖥️ ${appName} - Desktop Application</h2>
+                    <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">✕</button>
+                </div>
+                <div class="modal-form">
+                    <div class="form-group">
+                        <h4>📋 Application Information:</h4>
+                        <p><strong>Name:</strong> ${appName}</p>
+                        <p><strong>Type:</strong> Desktop Application</p>
+                        <p><strong>Application ID:</strong> ${appId}</p>
+                        <p><strong>Description:</strong> ${appDescription}</p>
+                        ${bookmark && bookmark.tags && bookmark.tags.length > 0 ? `<p><strong>Tags:</strong> ${bookmark.tags.join(', ')}</p>` : ''}
+                    </div>
+                    
+                    <div class="form-group">
+                        <h4>🖥️ Desktop Application Access:</h4>
+                        <div style="background-color: rgba(59, 130, 246, 0.1); border: 1px solid #3b82f6; border-radius: 6px; padding: 12px; color: #1e40af;">
+                            <strong>💻 Local Installation Required</strong><br>
+                            This is a desktop application that must be installed on your computer. It cannot be accessed through a web browser.
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h4>🔧 How to Access:</h4>
+                        <ul>
+                            <li>🔍 Check if the application is already installed on your computer</li>
+                            <li>📂 Look in your Start Menu (Windows) or Applications folder (Mac)</li>
+                            <li>🖱️ Search for "${appName}" in your system search</li>
+                            <li>📧 Contact IT support if you need the application installed</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <h4>💡 Installation Help:</h4>
+                        <p>If you don't have this application installed or need assistance:</p>
+                        <div class="action-buttons-group">
+                            <button class="btn-primary" onclick="bookmarkApp.requestDesktopAppHelp('${appName}', '${appId}', '${appDescription}'); this.closest('.modal-overlay').remove();">📧 Request Installation</button>
+                            <button class="btn-secondary" onclick="bookmarkApp.requestHelp('${appName.replace(/'/g, "\\'")}', '${appId}', '${appDescription.replace(/'/g, "\\'")}', event); this.closest('.modal-overlay').remove();">❓ Get Help</button>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="this.closest('.modal-overlay').remove()">Close</button>
+                        <button type="button" class="btn-primary" onclick="bookmarkApp.requestDesktopAppHelp('${appName}', '${appId}', '${appDescription}'); this.closest('.modal-overlay').remove();">📧 Request Installation</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
+
+    requestDesktopAppHelp(appName, appId, appDescription) {
+        const supportEmail = this.getDefaultSupportEmail();
+        const subject = `Desktop Application Request - ${appName}`;
+        const browserInfo = this.getBrowserInfo();
+        const hostname = this.getHostname();
+        const timestamp = new Date().toLocaleString();
+        
+        const body = `Hello IT Support,
+
+I need assistance with the desktop application: ${appName}
+
+Application Information:
+- Name: ${appName}
+- Application ID: ${appId}
+- Description: ${appDescription}
+
+Request Type:
+☐ New Installation - I don't have this application installed
+☐ Reinstallation - The application was removed or corrupted
+☐ Update/Upgrade - I need a newer version
+☐ Access Issues - The application is installed but won't start
+☐ License Issues - License expired or not activated
+☐ Other - Please specify below
+
+Business Justification:
+[Please explain why you need this application for your work]
+
+Installation Preference:
+☐ Standard Installation (IT installs remotely)
+☐ Self-Service Installation (if available)
+☐ Scheduled Installation (arrange a time)
+
+System Information:
+- Computer Name: ${hostname}
+- Operating System: ${this.getOperatingSystem()}
+- Current User: [Your Username]
+- Date/Time: ${timestamp}
+- Department: [Your Department]
+
+Additional Information:
+[Any specific requirements, version preferences, or other details]
+
+Manager Approval (if required):
+- Manager Name: [Manager's Name]
+- Manager Email: [Manager's Email]
+- Approval Status: [Approved/Pending]
+
+Thank you for your assistance.
+
+Best regards,
+[Your Name]
+[Your Email]
+[Your Phone Number]`;
+
+        const mailtoLink = `mailto:${supportEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
     }
 
     // Generic help email (fallback) - now uses inline form
@@ -4456,8 +5170,6 @@ Best regards,
         if (errorMessage) errorMessage.style.display = 'block';
     }
 }
-
-// Easter egg addon - F1 game loaded from separate file
 
 // Initialize the application when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {

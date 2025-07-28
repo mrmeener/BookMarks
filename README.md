@@ -7,6 +7,17 @@ The BookMark Manager is a professional bookmark management system designed for c
 
 ## Version History
 
+### Version 2.2.7 (2025-07-28)
+- **Desktop Application Support**: Added comprehensive desktop application management alongside web bookmarks
+- **Visual Differentiation**: Desktop apps display with unique styling, 🖥️ icons, and specialized badges
+- **Enhanced Add Bookmark Form**: Type selector (Web/Desktop) with dynamic form behavior and validation
+- **Desktop App Information Modals**: Click desktop apps to view installation guidance and IT support options
+- **Help System Integration**: Desktop apps support all 3 help types (Help, Split Help, Approval Process)
+- **Responsive Design**: Desktop app cards work seamlessly across all screen sizes and themes
+- **Data Structure Enhancement**: Added `type` field to bookmark objects with backward compatibility
+- **Fixed infinite loading issue** when adding user bookmarks
+- **Improved mergeUserBookmarks()** method to prevent duplicate accumulation
+
 ### Version 2.2.6 (2025-07-27)
 - Fixed syntax error in user-bookmarks.js causing load failures  
 - Enhanced error handling for malformed bookmark data  
@@ -134,6 +145,6 @@ BookMarks/
 - **System Admin**: sysadmin@company.com  
 - **Application Owner**: Keith Clarke  
 
-**Version**: 2.2.6  
+**Version**: 2.2.7  
 **Last Updated**: 2025-07-28  
 **License**: MIT

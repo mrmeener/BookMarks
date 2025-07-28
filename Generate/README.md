@@ -54,11 +54,11 @@ The CSV template includes **42 columns** that map to all BookMark Manager featur
 ### Required Fields (3)
 - `CategoryID` - Unique category identifier
 - `BookmarkName` - Bookmark title  
-- `BookmarkURL` - Full URL
+- `BookmarkURL` - Full URL or application name
 
-### Optional Fields (39)
+### Optional Fields (40)
 - **Category Info**: Name, Description, Color
-- **Bookmark Details**: Description, Logo, Tags, SupportType
+- **Bookmark Details**: Description, Logo, Tags, SupportType, **Type** (web/desktop)
 - **Help System**: Description, Purpose, AccessLevel, AccessProcess
 - **Contact Methods**: Type, Person, Email, Phone, Hours, Scripts
 - **Access Control**: Requirements, Approval Process, Timeframes
@@ -113,6 +113,47 @@ phone,+1-555-0199,2847,Monday-Friday 8 AM - 6 PM EST,Hi I need access to [system
 ```csv
 ContactType,ContactEmail
 self-service,helpdesk@company.com
+```
+
+## Desktop Application Support
+
+### Adding Desktop Applications via CSV
+
+The CSV workflow now supports desktop applications alongside web bookmarks. Desktop applications are distinguished by the `Type` field:
+
+### Desktop App CSV Example
+```csv
+CategoryID,BookmarkName,BookmarkURL,Type,Description,SupportType
+desktop-apps,Microsoft Word,Microsoft Word 2021,desktop,Word processing application,help
+desktop-apps,Adobe Photoshop,Adobe Photoshop 2024,desktop,Professional image editing software,approval-process
+desktop-apps,Visual Studio Code,VS Code,desktop,Code editor for developers,self-service
+```
+
+### Key Differences for Desktop Apps
+
+| Field | Web Bookmark | Desktop Application |
+|-------|--------------|-------------------|
+| **Type** | `web` (default) | `desktop` |
+| **BookmarkURL** | Full web URL | Application name/identifier |
+| **Visual Display** | 🌐 Web icon | 🖥️ Desktop icon |
+| **Click Behavior** | Opens URL | Shows info modal |
+| **Help System** | Full support | Full support |
+
+### Desktop App Field Mapping
+
+When creating desktop applications in CSV:
+
+- **Type**: Set to `desktop`
+- **BookmarkURL**: Use application name (e.g., "Microsoft Word 2021")
+- **Description**: Describe the application's purpose
+- **SupportType**: Use `help`, `split-help`, or `approval-process`
+- **ContactMethod**: Same options as web bookmarks
+- **AccessRequirements**: List installation/licensing requirements
+
+### Example Desktop App with Full Help System
+```csv
+CategoryID,BookmarkName,BookmarkURL,Type,Description,SupportType,HelpDescription,AccessRequirements,ContactType,ContactEmail,ContactPerson
+creative-suite,Adobe Illustrator,Adobe Illustrator 2024,desktop,Vector graphics design software,approval-process,Request access to Adobe Creative Suite,Manager approval;Business justification;License availability,email,software-requests@company.com,IT Software Team
 ```
 
 ## Advanced Usage
@@ -232,6 +273,12 @@ The conversion script processes:
 - ✅ **Knowledge base integration** with training materials
 
 ## Version History
+
+- **v2.2.7** (2025-07-28)
+  - Added desktop application support in CSV workflow
+  - Enhanced Type field mapping (web/desktop)
+  - Updated field documentation for desktop apps
+  - Added desktop application examples and templates
 
 - **v1.0** (2025-01-26)
   - Initial CSV-to-JSON conversion system

@@ -54,40 +54,23 @@
                             <div class="settings-section-title">🎨 Theme</div>
                             <select id="themeSelect" class="theme-select-dropdown">
 <!-- Reds -->
-<option value="crimson-slate">Crimson</option>
-<option value="corporate-red">Corporate Red</option>
-
-<!-- Oranges -->
-<option value="corporate-orange">Orange</option>
+<option value="corporate-red">Red</option>
 
 <!-- Greens -->
 <option value="corporate-green">Green</option>
-<option value="eco-lime">Lime</option>
-
-<!-- Teals -->
-<option value="corporate-teal">Teal</option>
 
 <!-- Blues -->
 <option value="corporate-blue">Blue</option>
-<option value="trust-blue">Blue 2</option>
-<option value="executive-navy">Navy</option>
-
-<!-- Indigos -->
-<option value="modern-indigo">Indigo</option>
-
-<!-- Purples -->
-<option value="corporate-purple">Purple</option>
 
 <!-- Neutrals (grayscale/earth tones) -->
-<option value="minimal-sandstone">Sandstone</option>
 <option value="minimal-white">Minimal</option>
-<option value="professional-gray">Gray</option>
-<option value="steel-cyan">Steel</option>
-<option value="charcoal-gold">Charcoal</option>
+<option value="steel">Steel</option>
+
+
 
 <!-- Special Themes -->
 <option value="dark-mode">Dark Mode</option>
-<option value="high-contrast">High Contrast</option>
+
                             </select>
                         </div>
                         <div class="settings-menu-divider"></div>
@@ -169,13 +152,7 @@
                 
                 <div class="form-group">
                     <label for="exportFileName">File Name</label>
-                    <input type="text" id="exportFileName" placeholder="bookmarks-export" class="filename-input">
-                    <span class="file-extension">.json</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="exportNotes">Notes (optional)</label>
-                    <textarea id="exportNotes" placeholder="Optional description for this export" rows="2"></textarea>
+                    <input type="text" id="exportFileName" placeholder="bookmarks-export">
                 </div>
                 
                 <div id="exportPreview" class="export-preview" style="display: none;">
@@ -255,9 +232,18 @@
                     <label for="bookmarkName">Name *</label>
                     <input type="text" id="bookmarkName" name="name" required placeholder="Enter bookmark name">
                 </div>
+
+                <div class="form-group">
+                    <label for="bookmarkType">Type *</label>
+                    <select id="bookmarkType" name="type" required>
+                        <option value="web">Web Bookmark</option>
+                        <option value="desktop">Desktop Application</option>
+                    </select>
+                    <small style="color: #666; margin-top: 4px; display: block;">Choose whether this is a web service or desktop application</small>
+                </div>
                 
                 <div class="form-group">
-                    <label for="bookmarkUrl">URL *</label>
+                    <label for="bookmarkUrl" id="urlLabel">URL *</label>
                     <input type="url" id="bookmarkUrl" name="url" required placeholder="https://example.com">
                     <div class="url-preview">
                         <img id="faviconPreview" class="favicon-preview" style="display: none;">
@@ -286,6 +272,16 @@
                     <label for="bookmarkTags">Tags</label>
                     <input type="text" id="bookmarkTags" name="tags" placeholder="Enter tags separated by commas">
                     <div class="tag-suggestions"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bookmarkHelpType">Help Type</label>
+                    <select id="bookmarkHelpType" name="helpType">
+                        <option value="help">Help (Self-Service)</option>
+                        <option value="split-help">Split Help (Support Available)</option>
+                        <option value="approval-process">Approval Process (Requires Approval)</option>
+                    </select>
+                    <small style="color: #666; margin-top: 4px; display: block;">Choose the type of help/support process for this bookmark</small>
                 </div>
                 
                 <div class="form-group">

@@ -6,305 +6,104 @@
  * @version 2.2.6
  * @created 2025-01-26
  * @updated 2025-07-27
- * @description Comprehensive styling for the Corporate Bookmarks application featuring:
- *   - Enhanced typography and color palettes
- *   - Improved visual hierarchy and spacing
- *   - Smoother animations and transitions
- *   - 9 professional corporate color schemes
- *   - Responsive design for all screen sizes
- *   - Modern card-based layout
- *   - Accessibility-focused design
- *   - Print-friendly styles
- * 
- * @themes Available themes:
- *   - Corporate Blue (default)
- *   - Professional Gray
- *   - Corporate Green
- *   - Corporate Purple
- *   - Corporate Orange
- *   - Corporate Red
- *   - Dark Mode
- *   - High Contrast
- *   - Minimal White
- * 
- * @license MIT
- * @repository https://github.com/keithclarke/corporate-bookmarks
- */
-
+/* CSS Custom Properties for Theming */
 /* CSS Custom Properties for Theming */
 :root {
     /* Corporate Blue Theme (Default) - Enhanced */
-    --primary-color: #0066cc;
-    --secondary-color: #004d99;
-    --accent-color: #003366;
-    --background-color: #f5f8fa;
+    --primary-color: #1a73e8;
+    --secondary-color: #0d5bbc;
+    --accent-color: #0b4aa3;
+    --background-color: #e8f0fe;
     --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #808080;
-    --border-color: #e0e6ed;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --text-tertiary: #9aa0a6;
+    --border-color: #dadce0;
     --shadow-color: rgba(0, 0, 0, 0.08);
-    --hover-shadow: rgba(0, 102, 204, 0.15);
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --info-color: #17a2b8;
-}
-
-/* Professional Gray Theme - Enhanced */
-.theme-professional-gray {
-    --primary-color: #323130;
-    --secondary-color: #605e5c;
-    --accent-color: #8a8886;
-    --background-color: #faf9f8;
-    --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #8a8886;
-    --border-color: #edebe9;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-shadow: rgba(50, 49, 48, 0.2);
-}
-
-/* Corporate Green Theme - Enhanced */
-.theme-corporate-green {
-    --primary-color: #107c10;
-    --secondary-color: #0e6e0e;
-    --accent-color: #0c5d0c;
-    --background-color: #f3f9f3;
-    --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #6b8e6b;
-    --border-color: #e0e6ed;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-shadow: rgba(16, 124, 16, 0.2);
-}
-
-/* Corporate Purple Theme - Enhanced */
-.theme-corporate-purple {
-    --primary-color: #5c2d91;
-    --secondary-color: #4c1a7b;
-    --accent-color: #3d1465;
-    --background-color: #f9f7fc;
-    --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #8a7b9a;
-    --border-color: #e0e6ed;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-shadow: rgba(92, 45, 145, 0.2);
-}
-
-/* Corporate Orange Theme - Enhanced */
-.theme-corporate-orange {
-    --primary-color: #d83b01;
-    --secondary-color: #c73400;
-    --accent-color: #b62d00;
-    --background-color: #fdf6f3;
-    --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #b88a7a;
-    --border-color: #e0e6ed;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-shadow: rgba(216, 59, 1, 0.2);
+    --hover-shadow: rgba(26, 115, 232, 0.15);
 }
 
 /* Corporate Red Theme - Enhanced */
 .theme-corporate-red {
-    --primary-color: #c50e1f;
-    --secondary-color: #b10e1f;
-    --accent-color: #9d0e1f;
-    --background-color: #fdf3f4;
+    --primary-color: #d93025;
+    --secondary-color: #b31412;
+    --accent-color: #8c0d0b;
+    --background-color: #fce8e6;
     --card-background: #ffffff;
-    --text-primary: #1a1a1a;
-    --text-secondary: #4d4d4d;
-    --text-tertiary: #b87a7a;
-    --border-color: #e0e6ed;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-shadow: rgba(197, 14, 31, 0.2);
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --text-tertiary: #9aa0a6;
+    --border-color: #f4c7c3;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hover-shadow: rgba(217, 48, 37, 0.15);
 }
 
-/* Dark Mode Theme - Enhanced */
-.theme-dark-mode {
-    --primary-color: #4fc3f7;
-    --secondary-color: #29b6f6;
-    --accent-color: #0288d1;
-    --background-color: #121212;
-    --card-background: #1e1e1e;
-    --text-primary: #ffffff;
-    --text-secondary: #b3b3b3;
-    --text-tertiary: #808080;
-    --border-color: #333333;
-    --shadow-color: rgba(0, 0, 0, 0.3);
-    --hover-shadow: rgba(79, 195, 247, 0.3);
-}
-
-/* High Contrast Theme - Enhanced */
-.theme-high-contrast {
-    --primary-color: #0000ff;
-    --secondary-color: #000080;
-    --accent-color: #000066;
-    --background-color: #ffffff;
+/* Corporate Green Theme - Enhanced */
+.theme-corporate-green {
+    --primary-color: #0b8043;
+    --secondary-color: #0a6e3a;
+    --accent-color: #085c31;
+    --background-color: #e6f4ea;
     --card-background: #ffffff;
-    --text-primary: #000000;
-    --text-secondary: #333333;
-    --text-tertiary: #666666;
-    --border-color: #000000;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    --hover-shadow: rgba(0, 0, 255, 0.3);
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --text-tertiary: #9aa0a6;
+    --border-color: #c8e6c9;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hover-shadow: rgba(11, 128, 67, 0.15);
 }
 
 /* Minimal White Theme - Enhanced */
 .theme-minimal-white {
-    --primary-color: #666666;
-    --secondary-color: #555555;
-    --accent-color: #444444;
-    --background-color: #ffffff;
+    --primary-color: #5f6368;
+    --secondary-color: #3c4043;
+    --accent-color: #80868b;
+    --background-color: #f8f9fa;
     --card-background: #ffffff;
-    --text-primary: #333333;
-    --text-secondary: #666666;
-    --text-tertiary: #999999;
-    --border-color: #e0e0e0;
-    --shadow-color: rgba(0, 0, 0, 0.05);
-    --hover-shadow: rgba(102, 102, 102, 0.1);
-}
-
-.theme-corporate-teal {
-    --primary-color: #00796B;
-    --secondary-color: #004D40;
-    --accent-color: #26A69A;
-    --background-color: #F1F8F6;
-    --card-background: #FFFFFF;
-    --text-primary: #1A1A1A;
-    --text-secondary: #4D4D4D;
-    --text-tertiary: #7E8C8A;
-    --border-color: #DDE9E6;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --hover-shadow: rgba(0, 121, 107, 0.15);
-}
-
-.theme-modern-indigo {
-    --primary-color: #3F51B5;
-    --secondary-color: #303F9F;
-    --accent-color: #7986CB;
-    --background-color: #F5F6FB;
-    --card-background: #FFFFFF;
-    --text-primary: #1C1C1C;
-    --text-secondary: #4D4D4D;
-    --text-tertiary: #9FA8DA;
-    --border-color: #E0E6ED;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --hover-shadow: rgba(63, 81, 181, 0.15);
-}
-
-.theme-trust-blue {
-    --primary-color: #005A9E;
-    --secondary-color: #003F73;
-    --accent-color: #6BA4D8;
-    --background-color: #F4F7FA;
-    --card-background: #FFFFFF;
     --text-primary: #202124;
-    --text-secondary: #5F6368;
-    --text-tertiary: #9AA0A6;
-    --border-color: #DDE3EA;
-    --shadow-color: rgba(0, 0, 0, 0.07);
-    --hover-shadow: rgba(0, 90, 158, 0.15);
-}
-
-.theme-charcoal-gold {
-    --primary-color: #8B6F4E;
-    --secondary-color: #5C4633;
-    --accent-color: #BFA06F;
-    --background-color: #FAF7F3;
-    --card-background: #FFFFFF;
-    --text-primary: #2E2E2E;
-    --text-secondary: #5C5C5C;
-    --text-tertiary: #9E9E9E;
-    --border-color: #EAE2DA;
-    --shadow-color: rgba(0, 0, 0, 0.07);
-    --hover-shadow: rgba(139, 111, 78, 0.2);
-}
-
-.theme-eco-lime {
-    --primary-color: #4CAF50;
-    --secondary-color: #388E3C;
-    --accent-color: #C8E6C9;
-    --background-color: #F3F9F3;
-    --card-background: #FFFFFF;
-    --text-primary: #1B1B1B;
-    --text-secondary: #4D4D4D;
-    --text-tertiary: #81C784;
-    --border-color: #DDE6DD;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --hover-shadow: rgba(76, 175, 80, 0.2);
-}
-
-.theme-executive-navy {
-    --primary-color: #263238;
-    --secondary-color: #1C262B;
-    --accent-color: #546E7A;
-    --background-color: #ECEFF1;
-    --card-background: #FFFFFF;
-    --text-primary: #212121;
-    --text-secondary: #455A64;
-    --text-tertiary: #90A4AE;
-    --border-color: #CFD8DC;
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --hover-shadow: rgba(38, 50, 56, 0.2);
-}
-
-.theme-crimson-slate {
-    --primary-color: #B71C1C;
-    --secondary-color: #7F0000;
-    --accent-color: #D32F2F;
-    --background-color: #FDF3F3;
-    --card-background: #FFFFFF;
-    --text-primary: #2A2A2A;
-    --text-secondary: #5C5C5C;
-    --text-tertiary: #A1887F;
-    --border-color: #E4C5C5;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --hover-shadow: rgba(183, 28, 28, 0.2);
-}
-
-.theme-steel-cyan {
-    --primary-color: #0097A7;
-    --secondary-color: #006064;
-    --accent-color: #4DD0E1;
-    --background-color: #F0F9FB;
-    --card-background: #FFFFFF;
-    --text-primary: #212121;
-    --text-secondary: #4E5C5D;
-    --text-tertiary: #80DEEA;
-    --border-color: #D2EDF1;
-    --shadow-color: rgba(0, 0, 0, 0.08);
-    --hover-shadow: rgba(0, 151, 167, 0.2);
-}
-
-.theme-minimal-sandstone {
-    --primary-color: #A1887F;
-    --secondary-color: #6D4C41;
-    --accent-color: #D7CCC8;
-    --background-color: #FFFFFF;
-    --card-background: #FFFFFF;
-    --text-primary: #3E3E3E;
-    --text-secondary: #666666;
-    --text-tertiary: #999999;
-    --border-color: #DDD2CD;
+    --text-secondary: #5f6368;
+    --text-tertiary: #9aa0a6;
+    --border-color: #dadce0;
     --shadow-color: rgba(0, 0, 0, 0.05);
-    --hover-shadow: rgba(161, 136, 127, 0.15);
+    --hover-shadow: rgba(95, 99, 104, 0.1);
 }
 
+/* Dark Mode Theme - Enhanced */
+.theme-dark-mode {
+    --primary-color: #8ab4f8;
+    --secondary-color: #669df6;
+    --accent-color: #4285f4;
+    --background-color: #202124;
+    --card-background: #2d2e30;
+    --text-primary: #e8eaed;
+    --text-secondary: #bdc1c6;
+    --text-tertiary: #9aa0a6;
+    --border-color: #3c4043;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --hover-shadow: rgba(138, 180, 248, 0.2);
+}
 
+/* Steel Theme - Professional Steel */
+.theme-steel {
+    --primary-color: #5f738c;
+    --secondary-color: #4a5c70;
+    --accent-color: #35465a;
+    --background-color: #e8ebee;
+    --card-background: #ffffff;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --text-tertiary: #9aa0a6;
+    --border-color: #d2d6dc;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hover-shadow: rgba(95, 115, 140, 0.15);
+}
 
 /* Consistent success/warning/danger colors across all themes */
 :root, [class*="theme-"] {
-    --success-color: #28a745;
-    --warning-color: #ffc107;
-    --danger-color: #dc3545;
-    --info-color: #17a2b8;
+    --success-color: #34a853;
+    --warning-color: #f9ab00;
+    --danger-color: #ea4335;
+    --info-color: #4285f4;
 }
 
 /* Reset and Base Styles */
@@ -966,20 +765,21 @@ body {
     background-color: var(--card-background);
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    width: 90%;
-    max-height: 90vh;
+    max-width: 800px;
+    width: 95%;
+    max-height: 85vh;
     overflow-y: auto;
     border: 1px solid var(--border-color);
+    padding: 8px;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 24px 0 24px;
+    padding: 32px 32px 0 32px;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 }
 
 .modal-title {
@@ -1011,7 +811,7 @@ body {
 }
 
 .modal-form {
-    padding: 0 24px 24px 24px;
+    padding: 0 32px 32px 32px;
 }
 
 .form-group {
@@ -1162,10 +962,62 @@ body {
 .email-help-text {
     margin-top: 20px;
     margin-bottom: 24px;
-    padding: 16px;
+    padding: 20px;
     background-color: var(--background-color);
     border-radius: 8px;
     border: 1px solid var(--border-color);
+}
+
+/* Enhanced styling for help text sections with lists */
+.email-help-text ul,
+.help-instructions ul,
+.modal-form ul {
+    margin: 12px 0 16px 0;
+    padding-left: 28px;
+}
+
+.email-help-text li,
+.help-instructions li,
+.modal-form li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    padding-left: 6px;
+}
+
+.email-help-text p,
+.help-instructions p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+/* Specific styling for help instruction headers */
+.help-instructions h4,
+.email-help-text h4 {
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Better spacing for help content with emoji icons */
+.help-instructions .help-icon-text,
+.email-help-text .help-icon-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.help-instructions .help-icon-text .icon,
+.email-help-text .help-icon-text .icon {
+    font-size: 1.2rem;
+    margin-top: 2px;
+    flex-shrink: 0;
 }
 
 /* Ensure proper spacing between help content sections and action buttons */
@@ -1426,23 +1278,90 @@ body {
     background-color: var(--accent-color);
 }
 
+/* Enhanced Scrollbar Styling */
+/* Global scrollbar styling for modal content */
+.modal-content::-webkit-scrollbar {
+    width: 12px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 6px;
+    border: 2px solid var(--background-color);
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
 /* Scrollbar styling for available tags */
 .available-tags-section::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .available-tags-section::-webkit-scrollbar-track {
     background: var(--background-color);
-    border-radius: 3px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
 }
 
 .available-tags-section::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 3px;
+    background: var(--primary-color);
+    border-radius: 4px;
 }
 
 .available-tags-section::-webkit-scrollbar-thumb:hover {
-    background: var(--text-secondary);
+    background: var(--secondary-color);
+}
+
+/* Scrollbar styling for autocomplete dropdown */
+.autocomplete-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 4px;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Scrollbar styling for textareas and form elements */
+textarea::-webkit-scrollbar,
+.support-email-body::-webkit-scrollbar {
+    width: 10px;
+}
+
+textarea::-webkit-scrollbar-track,
+.support-email-body::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+textarea::-webkit-scrollbar-thumb,
+.support-email-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+    border: 1px solid var(--background-color);
+}
+
+textarea::-webkit-scrollbar-thumb:hover,
+.support-email-body::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
 }
 
 /* Autocomplete Dropdown */
@@ -1546,6 +1465,162 @@ body {
 
 .favorites-section.collapsed .bookmarks-grid {
     display: none;
+}
+
+/* Favorites Grid - Match Recently Visited Layout */
+.favorites-section .bookmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--card-background);
+    border-radius: 0 0 12px 12px;
+}
+
+/* Favorites Cards - Match Recently Visited Styling */
+.favorites-section .bookmark-card {
+    position: relative;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorites-section .bookmark-header {
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.favorites-section .bookmark-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+.favorites-section .bookmark-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.favorites-section .bookmark-url {
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+}
+
+.favorites-section .bookmark-description {
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 8px;
+    flex: 1;
+}
+
+.favorites-section .bookmark-star {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    top: 6px;
+    right: 6px;
+}
+
+.favorites-section .bookmark-help {
+    position: absolute;
+    top: 6px;
+    right: 32px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.favorites-section .bookmark-help:hover {
+    transform: scale(1.1);
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive behavior for Favorites - Match Recently Visited */
+@media (max-width: 768px) {
+    .favorites-section .bookmarks-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+    
+    .favorites-section .bookmark-card {
+        padding: 12px;
+        min-height: 120px;
+    }
+    
+    .favorites-section .bookmark-logo {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .favorites-section .bookmark-title {
+        font-size: 0.8125rem;
+    }
+    
+    .favorites-section .bookmark-url {
+        font-size: 0.6875rem;
+    }
+    
+    .favorites-section .bookmark-description {
+        font-size: 0.75rem;
+        -webkit-line-clamp: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-section .bookmarks-grid {
+        gap: 8px;
+    }
+    
+    .favorites-section .bookmark-card {
+        padding: 10px;
+        min-height: 100px;
+    }
+    
+    .favorites-section .bookmark-logo {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .favorites-section .bookmark-star {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        top: 4px;
+        right: 4px;
+    }
+    
+    .favorites-section .bookmark-help {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+        top: 4px;
+        right: 26px;
+    }
 }
 
 /* Recently Visited Section */
@@ -1912,6 +1987,140 @@ body {
     background-color: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
+}
+
+/* ===== DESKTOP APPLICATION CARDS ===== */
+
+/* Desktop App Card Styling */
+.desktop-app-card {
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(95, 115, 140, 0.02) 100%);
+    border: 1px solid rgba(95, 115, 140, 0.15);
+    cursor: pointer;
+    position: relative;
+}
+
+.desktop-app-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgba(95, 115, 140, 0.2);
+    border-color: rgba(95, 115, 140, 0.3);
+    background: linear-gradient(135deg, var(--card-background) 0%, rgba(95, 115, 140, 0.05) 100%);
+}
+
+.desktop-app-card::before {
+    content: '🖥️';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+/* Desktop App Type Badge */
+.desktop-app-card .bookmark-url {
+    color: #5f738c;
+    font-weight: 600;
+    font-style: normal;
+    background: rgba(95, 115, 140, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 0.75rem;
+    border: 1px solid rgba(95, 115, 140, 0.2);
+    margin-bottom: 8px;
+}
+
+.desktop-app-card:hover .bookmark-url {
+    background: rgba(95, 115, 140, 0.15);
+    border-color: rgba(95, 115, 140, 0.3);
+    color: #4a5c70;
+}
+
+/* Desktop App Help Icon Positioning */
+.desktop-app-card .bookmark-help {
+    background: rgba(95, 115, 140, 0.1);
+    border-color: rgba(95, 115, 140, 0.2);
+    color: #5f738c;
+}
+
+.desktop-app-card .bookmark-help:hover {
+    background: #5f738c;
+    color: white;
+    border-color: #5f738c;
+}
+
+/* Desktop App Star Icon */
+.desktop-app-card .bookmark-star {
+    background: rgba(95, 115, 140, 0.1);
+    border-color: rgba(95, 115, 140, 0.2);
+}
+
+.desktop-app-card .bookmark-star:hover {
+    background: rgba(95, 115, 140, 0.2);
+    border-color: rgba(95, 115, 140, 0.3);
+}
+
+/* Desktop App Logo Styling */
+.desktop-app-card .bookmark-logo {
+    border: 2px solid rgba(95, 115, 140, 0.1);
+    background: rgba(95, 115, 140, 0.05);
+}
+
+.desktop-app-card:hover .bookmark-logo {
+    border-color: rgba(95, 115, 140, 0.2);
+    background: rgba(95, 115, 140, 0.1);
+}
+
+/* Desktop App Title Styling */
+.desktop-app-card .bookmark-title {
+    padding-left: 32px; /* Make room for the desktop icon */
+}
+
+/* Responsive adjustments for desktop app cards */
+@media (max-width: 768px) {
+    .desktop-app-card::before {
+        font-size: 1rem;
+        top: 6px;
+        left: 6px;
+    }
+    
+    .desktop-app-card .bookmark-title {
+        padding-left: 28px;
+    }
+    
+    .desktop-app-card .bookmark-url {
+        font-size: 0.6875rem;
+        padding: 3px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .desktop-app-card::before {
+        font-size: 0.875rem;
+        top: 4px;
+        left: 4px;
+    }
+    
+    .desktop-app-card .bookmark-title {
+        padding-left: 24px;
+    }
+    
+    .desktop-app-card .bookmark-url {
+        font-size: 0.625rem;
+        padding: 2px 4px;
+    }
+    
+    .desktop-app-card .bookmark-help {
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+    
+    .desktop-app-card .bookmark-star {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
 }
 
 /* Categories Container */
@@ -2494,13 +2703,14 @@ body {
 
 .help-section ul {
     margin-bottom: 16px;
-    padding-left: 20px;
+    padding-left: 24px;
 }
 
 .help-section li {
     margin-bottom: 8px;
     line-height: 1.6;
     color: var(--text-primary);
+    padding-left: 4px;
 }
 
 .help-tip {
@@ -2929,6 +3139,162 @@ body {
     }
 }
 
+/* ===== SPLIT HELP MODAL STYLES ===== */
+
+/* Self-Service Options Styling */
+.self-service-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.service-option {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    transition: all 0.2s ease;
+}
+
+.service-option:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service-option h5 {
+    color: var(--primary-color);
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.service-option p {
+    margin: 0 0 16px 0;
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+.service-option .btn-primary {
+    padding: 10px 16px;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.service-option .btn-primary:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+/* Enhanced Split Help Tab Content */
+.split-help-tab-content {
+    min-height: 450px;
+    padding: 24px 0;
+}
+
+.split-help-tab-content .form-group {
+    margin-bottom: 24px;
+}
+
+.split-help-tab-content .form-group:last-child {
+    margin-bottom: 20px;
+}
+
+.split-help-tab-content h4 {
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    font-size: 1.125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.split-help-tab-content p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-size: 0.9375rem;
+}
+
+.split-help-tab-content ul {
+    margin: 16px 0 20px 0;
+    padding-left: 28px;
+}
+
+.split-help-tab-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    padding-left: 6px;
+    font-size: 0.9375rem;
+}
+
+/* Split Help Tool Information Box */
+.split-help-tool-info {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.split-help-tool-info p {
+    margin: 8px 0;
+    font-size: 0.9375rem;
+}
+
+.split-help-tool-info strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.split-help-tool-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.split-help-tool-info a:hover {
+    text-decoration: underline;
+}
+
+/* Split Help Quick Tips */
+.split-help-tips {
+    background: rgba(var(--info-color), 0.1);
+    border: 1px solid var(--info-color);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.split-help-tips ul {
+    margin: 8px 0 0 0;
+    padding-left: 24px;
+}
+
+.split-help-tips li {
+    margin-bottom: 8px;
+    color: var(--info-color);
+    font-size: 0.9375rem;
+}
+
 /* ===== SUPPORT TAB STYLES ===== */
 
 /* Support Email Template */
@@ -2936,8 +3302,8 @@ body {
     background: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 16px;
-    margin-top: 12px;
+    padding: 20px;
+    margin-top: 16px;
 }
 
 .email-template-header {
